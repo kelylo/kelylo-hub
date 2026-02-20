@@ -1,0 +1,21 @@
+# Python virtual environment
+venv/
+
+# Environment variables — contains API key, never commit
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node.js files
+node_modules/
+*.log
+
+# Project files
+all_files_sorted.txt

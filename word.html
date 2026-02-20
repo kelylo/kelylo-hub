@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>Word | Ambition Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <link rel="preload" href="images/9.jpg" as="image" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body data-skill="word">
+    <!-- ── TOP NAV ──────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+      <main class="main">
+        <!-- Skill Hero Section -->
+        <div class="skill-hero fade-in">
+          <img src="images/9.jpg" alt="Microsoft Word" class="skill-hero-image" loading="lazy" decoding="async">
+          <div class="skill-hero-overlay"></div>
+          <div class="skill-hero-content">
+            <span class="badge"><i id="skillIcon" class="fa-solid fa-file-word"></i> Focus Mode</span>
+            <h1 id="skillTitle">Microsoft Word</h1>
+            <p id="skillWhy">Clean documents make you credible. Word mastery means you can deliver any report fast.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center;">
+          <span class="accent-badge" id="timeBadge"><i class="fa-solid fa-clock"></i> 2.5 hours today</span>
+        </div>
+
+        <!-- AI Smart Suggestions Card -->
+        <section class="grid fade-in" id="aiSuggestionsSection" style="display: none;">
+          <div class="card ai-suggestions-card">
+            <div class="card-title">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-robot" style="color: var(--brand-orange);"></i>
+                <h3>AI Smart Suggestions</h3>
+              </div>
+              <button class="button secondary" id="refreshAISuggestions">
+                <i class="fa-solid fa-sync"></i> Refresh
+              </button>
+            </div>
+            <div id="aiSuggestionsContent" class="ai-suggestions-content">
+              <div class="loading-spinner">
+                <i class="fa-solid fa-spinner fa-spin"></i> Generating personalized suggestions...
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid two fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Focus</h3>
+              <button class="button secondary" id="refreshFocus">Refresh</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="todayFocus"></strong>
+              <span class="badge">Do it with full attention.</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Vital 20% Tasks</h3>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="task-input">
+              <input id="newTaskInput" type="text" placeholder="Add a new vital task" />
+              <button class="button" id="addTaskBtn">Add</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Notes</h3>
+            </div>
+            <textarea class="notes" id="notesInput" placeholder="Write what you learned, mistakes, next steps..."></textarea>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card roadmap-card">
+            <div class="card-title">
+              <h3>Microsoft Word 80/20 Roadmap</h3>
+            </div>
+            <p><strong>Total time:</strong> 2-4 weeks at 3 hours/day.</p>
+            <p><strong>Core philosophy:</strong> Most people use only 20% of Word. The other 80% separates beginners from professionals.</p>
+
+            <h4>Week 1: The Foundation That 90% of Users Never Learn</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 1</td>
+                  <td>Styles</td>
+                  <td>Format entire documents fast and enable TOC.</td>
+                  <td>Create Heading 1/2 and Normal styles. Apply to a sample document.</td>
+                </tr>
+                <tr>
+                  <td>Day 2</td>
+                  <td>Navigation Pane</td>
+                  <td>Reorder sections by dragging headings.</td>
+                  <td>Turn on Navigation Pane. Reorganize a 10-page document.</td>
+                </tr>
+                <tr>
+                  <td>Day 3</td>
+                  <td>Page Setup &amp; Breaks</td>
+                  <td>Different headers/footers and orientations per section.</td>
+                  <td>Insert Next Page breaks. Make one section landscape.</td>
+                </tr>
+                <tr>
+                  <td>Day 4</td>
+                  <td>Headers &amp; Footers</td>
+                  <td>Different first/odd/even pages, restart numbering.</td>
+                  <td>Create headers per section and restart page numbers.</td>
+                </tr>
+                <tr>
+                  <td>Day 5</td>
+                  <td>Table of Contents</td>
+                  <td>Automatic TOC updates in one click.</td>
+                  <td>Insert automatic TOC and update it after edits.</td>
+                </tr>
+                <tr>
+                  <td>Day 6</td>
+                  <td>Lists &amp; Multilevel Lists</td>
+                  <td>Professional numbering (1, 1.1, 1.1.1).</td>
+                  <td>Create a multilevel list linked to Heading styles.</td>
+                </tr>
+                <tr>
+                  <td>Day 7</td>
+                  <td>Project: Report Template</td>
+                  <td>Combine everything into reusable templates.</td>
+                  <td>Build a report template and save as .dotx.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 2: Professional Document Features</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 8</td>
+                  <td>Tables</td>
+                  <td>Engineering data formatting and repeat headers.</td>
+                  <td>Merge headers, sort data, repeat header row.</td>
+                </tr>
+                <tr>
+                  <td>Day 9</td>
+                  <td>Pictures &amp; SmartArt</td>
+                  <td>Process diagrams and polished visuals.</td>
+                  <td>Insert a picture, apply style, create a flowchart.</td>
+                </tr>
+                <tr>
+                  <td>Day 10</td>
+                  <td>Captions &amp; Cross-References</td>
+                  <td>Auto-number figures and reference them.</td>
+                  <td>Add captions and cross-references, then reorder.</td>
+                </tr>
+                <tr>
+                  <td>Day 11</td>
+                  <td>Footnotes &amp; Endnotes</td>
+                  <td>Academic and technical writing essentials.</td>
+                  <td>Insert footnotes and endnotes, customize format.</td>
+                </tr>
+                <tr>
+                  <td>Day 12</td>
+                  <td>Citations &amp; Bibliography</td>
+                  <td>Auto-generate sources and references.</td>
+                  <td>Add sources, insert citations, build bibliography.</td>
+                </tr>
+                <tr>
+                  <td>Day 13</td>
+                  <td>Find, Replace &amp; Go To</td>
+                  <td>Advanced formatting search/replace.</td>
+                  <td>Replace all instances of a word/style.</td>
+                </tr>
+                <tr>
+                  <td>Day 14</td>
+                  <td>Project: Engineering Report</td>
+                  <td>Full professional report workflow.</td>
+                  <td>Write a 5-page report with TOC, tables, figures.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 3: Efficiency &amp; Automation</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 15</td>
+                  <td>Tabs &amp; Indents</td>
+                  <td>Professional layout control.</td>
+                  <td>Set tabs and build a dot-leader TOC manually.</td>
+                </tr>
+                <tr>
+                  <td>Day 16</td>
+                  <td>Columns</td>
+                  <td>Newsletter-style layouts.</td>
+                  <td>Create a two-column section with column breaks.</td>
+                </tr>
+                <tr>
+                  <td>Day 17</td>
+                  <td>Mail Merge</td>
+                  <td>Mass-generate letters, emails, labels.</td>
+                  <td>Merge a letter with a list of 10 names.</td>
+                </tr>
+                <tr>
+                  <td>Day 18</td>
+                  <td>Track Changes &amp; Comments</td>
+                  <td>Collaborative editing workflow.</td>
+                  <td>Practice accept/reject changes and comments.</td>
+                </tr>
+                <tr>
+                  <td>Day 19</td>
+                  <td>Comparing Documents</td>
+                  <td>See changes between versions.</td>
+                  <td>Compare two versions and review differences.</td>
+                </tr>
+                <tr>
+                  <td>Day 20</td>
+                  <td>Forms &amp; Content Controls</td>
+                  <td>Create fillable inspection forms.</td>
+                  <td>Build a form with checkboxes and date fields.</td>
+                </tr>
+                <tr>
+                  <td>Day 21</td>
+                  <td>Project: Collaborative Document</td>
+                  <td>Simulate team workflow.</td>
+                  <td>Review comments and finalize a shared document.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 4: Mastery &amp; Review</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 22</td>
+                  <td>Keyboard Shortcuts</td>
+                  <td>Speed separates amateurs from pros.</td>
+                  <td>Use core shortcuts for a full day.</td>
+                </tr>
+                <tr>
+                  <td>Day 23</td>
+                  <td>Quick Parts</td>
+                  <td>Reusable content blocks.</td>
+                  <td>Create a disclaimer Quick Part.</td>
+                </tr>
+                <tr>
+                  <td>Day 24</td>
+                  <td>Macros (Basic)</td>
+                  <td>Automate repetitive formatting.</td>
+                  <td>Record a macro for table formatting.</td>
+                </tr>
+                <tr>
+                  <td>Day 25</td>
+                  <td>Document Properties &amp; Fields</td>
+                  <td>Auto-update titles, dates, authors.</td>
+                  <td>Insert document fields and update them.</td>
+                </tr>
+                <tr>
+                  <td>Day 26</td>
+                  <td>Review &amp; Protect</td>
+                  <td>Restrict editing and secure documents.</td>
+                  <td>Protect a document and restrict formatting.</td>
+                </tr>
+                <tr>
+                  <td>Day 27</td>
+                  <td>Accessibility &amp; Export</td>
+                  <td>Accessible PDFs with bookmarks.</td>
+                  <td>Run Accessibility Checker and export to PDF.</td>
+                </tr>
+                <tr>
+                  <td>Day 28</td>
+                  <td>Final Project</td>
+                  <td>End-to-end mastery proof.</td>
+                  <td>Write a 20-30 page document using all features.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Word Mastery Checklist</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Skill</th>
+                  <th>Mastered?</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Styles &amp; Navigation Pane</td><td>☐</td><td></td></tr>
+                <tr><td>Section Breaks</td><td>☐</td><td></td></tr>
+                <tr><td>Headers &amp; Footers</td><td>☐</td><td></td></tr>
+                <tr><td>Automatic Table of Contents</td><td>☐</td><td></td></tr>
+                <tr><td>Multilevel Lists</td><td>☐</td><td></td></tr>
+                <tr><td>Tables (advanced)</td><td>☐</td><td></td></tr>
+                <tr><td>Captions &amp; Cross-References</td><td>☐</td><td></td></tr>
+                <tr><td>Citations &amp; Bibliography</td><td>☐</td><td></td></tr>
+                <tr><td>Mail Merge</td><td>☐</td><td></td></tr>
+                <tr><td>Track Changes &amp; Compare</td><td>☐</td><td></td></tr>
+                <tr><td>Quick Parts</td><td>☐</td><td></td></tr>
+                <tr><td>Keyboard Shortcuts (muscle memory)</td><td>☐</td><td></td></tr>
+                <tr><td>PDF Export with Bookmarks</td><td>☐</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>The 80/20 Truth (Word vs PowerPoint)</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>Word</th>
+                  <th>PowerPoint</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>The 20% that matters most</td><td>Styles &amp; Section Breaks</td><td>Slide Master &amp; Layouts</td></tr>
+                <tr><td>What most users miss</td><td>Navigation Pane, Cross-references</td><td>Selection Pane, Align tools</td></tr>
+                <tr><td>What pros automate</td><td>Styles, TOC, Captions</td><td>Master Slides, Themes</td></tr>
+                <tr><td>The time-saver</td><td>Keyboard shortcuts</td><td>Format Painter</td></tr>
+                <tr><td>Collaboration feature</td><td>Track Changes</td><td>Comments &amp; Rehearse</td></tr>
+                <tr><td>Export secret</td><td>PDF with bookmarks</td><td>Video with narration</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Practice Routine</h3>
+            </div>
+            <ol>
+              <li>Open the software.</li>
+              <li>Review yesterday's skills (5 min).</li>
+              <li>Watch a tutorial on today's feature (10 min).</li>
+              <li>Replicate exactly what you saw (10 min).</li>
+              <li>Apply it to your own project (5 min).</li>
+            </ol>
+            <p><strong>Next 2 hours:</strong> Work through hands-on tasks. Break the feature, fix it, understand it.</p>
+            <p><strong>Last 30 minutes:</strong> Self-test from memory. Write down one insight. Preview tomorrow.</p>
+            <p><em>Remember:</em> "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice."</p>
+          </div>
+        </section>
+
+        <!-- Resources: Files & Videos -->
+        <section class="grid two section-gap">
+          <!-- Files Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-folder"></i> Files & Documents</h3>
+              <button class="button secondary" id="uploadFileBtn">
+                <i class="fa-solid fa-upload"></i> Upload
+              </button>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg,.jpeg,.zip" />
+            <div id="filesList" class="resources-list">
+              <p class="empty-state">No files uploaded yet. Click "Upload" to add documents.</p>
+            </div>
+          </div>
+
+          <!-- Videos Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-video"></i> Learning Videos</h3>
+            </div>
+            <div class="video-input-section">
+              <input type="text" id="videoUrlInput" placeholder="Paste YouTube, Vimeo, or video URL here..." />
+              <input type="text" id="videoTitleInput" placeholder="Video title (optional)" />
+              <button class="button" id="addVideoBtn">
+                <i class="fa-solid fa-plus"></i> Add Video
+              </button>
+            </div>
+            <div id="videosList" class="resources-list">
+              <p class="empty-state">No videos added yet. Paste a video URL and click "Add Video".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Video Player Modal -->
+        <div id="videoPlayerModal" class="video-modal">
+          <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="video-player-container" id="videoPlayerContainer"></div>
+          </div>
+        </div>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Speech</h3>
+            </div>
+            <div class="speech-text" id="scheduledSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="scheduledVerse"></p>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Skill Wisdom</h3>
+            </div>
+            <p>Benjamin Franklin said, "An investment in knowledge pays the best interest."</p>
+            <p>Robert Greene noted, "The future belongs to those who learn more skills and combine them in creative ways."</p>
+          </div>
+        </section>
+
+        <footer class="app-footer fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Footer Quote</h3>
+            </div>
+            <p id="footerQuote"></p>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Speech</h3>
+            </div>
+            <div class="speech-text" id="footerSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="footerVerse"></p>
+          </div>
+        </footer>
+      </main>
+      
+      <div class="site-credit">
+        Made with <i class="fa-solid fa-heart"></i> by kevin for ambitious learners
+      </div>
+
+    <!-- AI Assistant Scripts -->
+    <script src="config.js"></script>
+    <script src="knowledge-base.js"></script>
+    <script src="ai-manager.js"></script>
+    <script src="ai-chat-ui.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="resources-manager.js?v=20260219"></script>
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

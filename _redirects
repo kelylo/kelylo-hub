@@ -1,0 +1,20 @@
+# Cloudflare Pages redirects
+
+# Redirect root to index.html
+/  /index.html  200
+
+# Handle skill pages
+/word  /word.html  200
+/excel  /excel.html  200
+/powerpoint  /powerpoint.html  200
+/canva  /canva.html  200
+/autocad  /autocad.html  200
+/sap2000  /sap2000.html  200
+/robot  /robot.html  200
+/english  /english.html  200
+
+# Handle custom skills with query params
+/skill  /skill.html  200
+
+# 404 fallback
+/*  /index.html  404

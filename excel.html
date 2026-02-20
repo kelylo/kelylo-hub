@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>Excel | Ambition Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <link rel="preload" href="images/12.jpg" as="image" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body data-skill="excel">
+    <!-- ── TOP NAV ──────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+      <main class="main">
+        <!-- Skill Hero Section -->
+        <div class="skill-hero fade-in">
+          <img src="images/12.jpg" alt="Excel" class="skill-hero-image" loading="lazy" decoding="async">
+          <div class="skill-hero-overlay"></div>
+          <div class="skill-hero-content">
+            <span class="badge"><i id="skillIcon" class="fa-solid fa-file-excel"></i> Focus Mode</span>
+            <h1 id="skillTitle">Excel</h1>
+            <p id="skillWhy">Excel is the language of numbers. Control data and you control decisions.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center;">
+          <span class="accent-badge" id="timeBadge"><i class="fa-solid fa-clock"></i> 2.5 hours today</span>
+        </div>
+
+        <section class="grid two fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Focus</h3>
+              <button class="button secondary" id="refreshFocus">Refresh</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="todayFocus"></strong>
+              <span class="badge">Build with precision.</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Vital 20% Tasks</h3>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="task-input">
+              <input id="newTaskInput" type="text" placeholder="Add a new vital task" />
+              <button class="button" id="addTaskBtn">Add</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Notes</h3>
+            </div>
+            <textarea class="notes" id="notesInput" placeholder="Write what you learned, mistakes, next steps..."></textarea>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Excel 80/20 Roadmap</h3>
+            </div>
+            <p><strong>Total time:</strong> 3-4 weeks at 3 hours/day.</p>
+            <p><strong>Core philosophy:</strong> Excel is the language of engineering data. The 20% you master handles 80% of real work.</p>
+
+            <h4>Week 1: The Foundation</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 1</td>
+                  <td>Excel Tables (Ctrl+T)</td>
+                  <td>Auto-expand, structured references.</td>
+                  <td>Create a 20-row project table and expand it.</td>
+                </tr>
+                <tr>
+                  <td>Day 2</td>
+                  <td>SUM, AVERAGE, COUNT</td>
+                  <td>Foundation of all calculations.</td>
+                  <td>Calculate totals and averages from project data.</td>
+                </tr>
+                <tr>
+                  <td>Day 3</td>
+                  <td>Absolute vs Relative References</td>
+                  <td>Unlock advanced formulas.</td>
+                  <td>Build a multiplication table with $ references.</td>
+                </tr>
+                <tr>
+                  <td>Day 4</td>
+                  <td>IF Functions</td>
+                  <td>Logic tests for engineering decisions.</td>
+                  <td>Mark tests as Pass/Fail based on strength.</td>
+                </tr>
+                <tr>
+                  <td>Day 5</td>
+                  <td>Sorting &amp; Filtering</td>
+                  <td>Find what matters in big data.</td>
+                  <td>Filter projects over a cost threshold.</td>
+                </tr>
+                <tr>
+                  <td>Day 6</td>
+                  <td>Conditional Formatting</td>
+                  <td>Visual alerts for out-of-spec data.</td>
+                  <td>Apply color scales and icon sets.</td>
+                </tr>
+                <tr>
+                  <td>Day 7</td>
+                  <td>Project: Construction Log Tracker</td>
+                  <td>A real tool you'll use.</td>
+                  <td>Create a log with dates, cost, status, alerts.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 2: Lookups &amp; Intelligence</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 8</td>
+                  <td>XLOOKUP</td>
+                  <td>Modern, flexible lookup.</td>
+                  <td>Pull unit costs into a project table.</td>
+                </tr>
+                <tr>
+                  <td>Day 9</td>
+                  <td>Named Ranges</td>
+                  <td>Readable formulas.</td>
+                  <td>Name cost columns and update formulas.</td>
+                </tr>
+                <tr>
+                  <td>Day 10</td>
+                  <td>Analyze Data</td>
+                  <td>AI-assisted trends and charts.</td>
+                  <td>Ask questions on your data table.</td>
+                </tr>
+                <tr>
+                  <td>Day 11</td>
+                  <td>PivotTables (Setup)</td>
+                  <td>Summarize thousands of rows fast.</td>
+                  <td>Create a PivotTable by category.</td>
+                </tr>
+                <tr>
+                  <td>Day 12</td>
+                  <td>PivotTables (Grouping &amp; Slicers)</td>
+                  <td>Interactive drill-down.</td>
+                  <td>Group dates by month, add slicers.</td>
+                </tr>
+                <tr>
+                  <td>Day 13</td>
+                  <td>Charts from PivotTables</td>
+                  <td>Dynamic visuals.</td>
+                  <td>Create a PivotChart with slicers.</td>
+                </tr>
+                <tr>
+                  <td>Day 14</td>
+                  <td>Project: Cost Dashboard</td>
+                  <td>Interactive summary.</td>
+                  <td>Build a cost dashboard with charts.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 3: Data Cleaning &amp; Advanced Functions</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 15</td>
+                  <td>Power Query</td>
+                  <td>Clean once, refresh forever.</td>
+                  <td>Import messy data and clean it.</td>
+                </tr>
+                <tr>
+                  <td>Day 16</td>
+                  <td>Text Functions</td>
+                  <td>Clean messy text data.</td>
+                  <td>Split addresses into components.</td>
+                </tr>
+                <tr>
+                  <td>Day 17</td>
+                  <td>Date Functions</td>
+                  <td>Durations and workdays.</td>
+                  <td>Calculate workdays between dates.</td>
+                </tr>
+                <tr>
+                  <td>Day 18</td>
+                  <td>Dynamic Arrays</td>
+                  <td>Self-updating lists.</td>
+                  <td>Use FILTER, SORT, UNIQUE on projects.</td>
+                </tr>
+                <tr>
+                  <td>Day 19</td>
+                  <td>Data Validation</td>
+                  <td>Prevent entry errors.</td>
+                  <td>Create dropdown status lists.</td>
+                </tr>
+                <tr>
+                  <td>Day 20</td>
+                  <td>Goal Seek</td>
+                  <td>Solve for unknowns.</td>
+                  <td>Find max cost under a budget.</td>
+                </tr>
+                <tr>
+                  <td>Day 21</td>
+                  <td>Project: Material Estimator</td>
+                  <td>Automated cost tool.</td>
+                  <td>Build estimator with dropdowns and XLOOKUP.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 4: Statistical Analysis &amp; Automation</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 22</td>
+                  <td>Analysis ToolPak</td>
+                  <td>Advanced stats tools.</td>
+                  <td>Run descriptive stats on cost data.</td>
+                </tr>
+                <tr>
+                  <td>Day 23</td>
+                  <td>Regression Analysis</td>
+                  <td>Understand relationships.</td>
+                  <td>Run regression and interpret R2.</td>
+                </tr>
+                <tr>
+                  <td>Day 24</td>
+                  <td>Correlation &amp; Moving Average</td>
+                  <td>Spot trends and smooth noise.</td>
+                  <td>Compute correlation and moving average.</td>
+                </tr>
+                <tr>
+                  <td>Day 25</td>
+                  <td>LET Function</td>
+                  <td>Readable complex formulas.</td>
+                  <td>Rewrite a nested formula with LET.</td>
+                </tr>
+                <tr>
+                  <td>Day 26</td>
+                  <td>Simple Macros</td>
+                  <td>Automate formatting tasks.</td>
+                  <td>Record and run a formatting macro.</td>
+                </tr>
+                <tr>
+                  <td>Day 27</td>
+                  <td>PDF Export &amp; Printing</td>
+                  <td>Professional reports.</td>
+                  <td>Set print area, add headers, export PDF.</td>
+                </tr>
+                <tr>
+                  <td>Day 28</td>
+                  <td>Final Project</td>
+                  <td>Complete management dashboard.</td>
+                  <td>Build tables, pivots, charts, slicers, PDF.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Excel Mastery Checklist</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Skill</th>
+                  <th>Mastered?</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Excel Tables (Ctrl+T)</td><td>☐</td><td></td></tr>
+                <tr><td>XLOOKUP</td><td>☐</td><td></td></tr>
+                <tr><td>IF Functions</td><td>☐</td><td></td></tr>
+                <tr><td>PivotTables + Slicers</td><td>☐</td><td></td></tr>
+                <tr><td>Analyze Data (AI)</td><td>☐</td><td></td></tr>
+                <tr><td>Power Query</td><td>☐</td><td></td></tr>
+                <tr><td>Dynamic Arrays</td><td>☐</td><td></td></tr>
+                <tr><td>Data Validation</td><td>☐</td><td></td></tr>
+                <tr><td>Conditional Formatting</td><td>☐</td><td></td></tr>
+                <tr><td>Analysis ToolPak</td><td>☐</td><td></td></tr>
+                <tr><td>Charts + PivotCharts</td><td>☐</td><td></td></tr>
+                <tr><td>Named Ranges</td><td>☐</td><td></td></tr>
+                <tr><td>Basic Macros</td><td>☐</td><td></td></tr>
+                <tr><td>PDF Export</td><td>☐</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>The 80/20 Truth (Canva vs Excel)</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>Canva</th>
+                  <th>Excel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>The 20% that matters most</td><td>Brand Kit + Magic Studio</td><td>Tables + PivotTables</td></tr>
+                <tr><td>What most users miss</td><td>Align tools, Frames, Magic Resize</td><td>Power Query, Dynamic Arrays</td></tr>
+                <tr><td>What pros automate</td><td>Templates, Brand Kits</td><td>Power Query, Macros</td></tr>
+                <tr><td>The AI feature</td><td>Magic Design, Magic Write, Beat Sync</td><td>Analyze Data, Copilot</td></tr>
+                <tr><td>Collaboration feature</td><td>Comments, Real-time editing</td><td>Co-authoring (365), Comments</td></tr>
+                <tr><td>Export secret</td><td>PDF print (CMYK) for print</td><td>PDF with bookmarks, print areas set</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Practice Routine</h3>
+            </div>
+            <ol>
+              <li>Open the software.</li>
+              <li>Review yesterday's skills (5 min).</li>
+              <li>Watch a tutorial on today's feature (10 min).</li>
+              <li>Replicate exactly what you saw (10 min).</li>
+              <li>Apply it to your own project (5 min).</li>
+            </ol>
+            <p><strong>Next 2 hours:</strong> Work through hands-on tasks. Break the feature, fix it, understand it.</p>
+            <p><strong>Last 30 minutes:</strong> Self-test from memory. Write down one insight. Preview tomorrow.</p>
+            <p><em>Remember:</em> "The future belongs to those who learn more skills and combine them in creative ways."</p>
+          </div>
+        </section>
+
+        <!-- Resources: Files & Videos -->
+        <section class="grid two section-gap">
+          <!-- Files Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-folder"></i> Files & Documents</h3>
+              <button class="button secondary" id="uploadFileBtn">
+                <i class="fa-solid fa-upload"></i> Upload
+              </button>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg,.jpeg,.zip" />
+            <div id="filesList" class="resources-list">
+              <p class="empty-state">No files uploaded yet. Click "Upload" to add documents.</p>
+            </div>
+          </div>
+
+          <!-- Videos Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-video"></i> Learning Videos</h3>
+            </div>
+            <div class="video-input-section">
+              <input type="text" id="videoUrlInput" placeholder="Paste YouTube, Vimeo, or video URL here..." />
+              <input type="text" id="videoTitleInput" placeholder="Video title (optional)" />
+              <button class="button" id="addVideoBtn">
+                <i class="fa-solid fa-plus"></i> Add Video
+              </button>
+            </div>
+            <div id="videosList" class="resources-list">
+              <p class="empty-state">No videos added yet. Paste a video URL and click "Add Video".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Video Player Modal -->
+        <div id="videoPlayerModal" class="video-modal">
+          <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="video-player-container" id="videoPlayerContainer"></div>
+          </div>
+        </div>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Speech</h3>
+            </div>
+            <div class="speech-text" id="scheduledSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="scheduledVerse"></p>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Skill Wisdom</h3>
+            </div>
+            <p>Benjamin Franklin said, "An investment in knowledge pays the best interest."</p>
+            <p>Robert Greene noted, "The future belongs to those who learn more skills and combine them in creative ways."</p>
+          </div>
+        </section>
+
+        <footer class="app-footer fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Footer Quote</h3>
+            </div>
+            <p id="footerQuote"></p>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Speech</h3>
+            </div>
+            <div class="speech-text" id="footerSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="footerVerse"></p>
+          </div>
+        </footer>
+      </main>
+      
+      <div class="site-credit">
+        Made with <i class="fa-solid fa-heart"></i> by kevin for ambitious learners
+      </div>
+
+    <!-- AI Assistant Scripts -->
+    <script src="config.js"></script>
+    <script src="knowledge-base.js"></script>
+    <script src="ai-manager.js"></script>
+    <script src="ai-chat-ui.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="resources-manager.js?v=20260219"></script>
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

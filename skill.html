@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>Skill | Ambition Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body>
+    <!-- ── TOP NAV ──────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+      <main class="main">
+        <!-- Hero -->
+        <div class="skill-hero">
+          <div class="skill-hero-overlay"></div>
+          <div class="skill-hero-bg" id="skillHeroBg"></div>
+          <div class="skill-hero-content">
+            <span class="badge">
+              <i id="skillIcon" class="fa-solid fa-bolt"></i> Focus Mode
+            </span>
+            <h1 id="skillTitle">Skill</h1>
+            <p id="skillWhy">Loading…</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center;">
+          <span class="accent-badge" id="timeBadge">
+            <i class="fa-solid fa-clock"></i> 2.5 hours today
+          </span>
+        </div>
+
+        <!-- Focus + Tasks -->
+        <section class="grid two section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Focus</h3>
+              <button class="button secondary" id="refreshFocus">Refresh</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="todayFocus"></strong>
+              <span class="badge">Do it with full attention.</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Vital 20% Tasks</h3>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="task-input">
+              <input id="newTaskInput" type="text" placeholder="Add a new vital task" />
+              <button class="button" id="addTaskBtn">Add</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Notes -->
+        <section class="grid section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Notes</h3>
+            </div>
+            <textarea class="notes" id="notesInput" placeholder="Write what you learned, mistakes, next steps…"></textarea>
+          </div>
+        </section>
+
+        <!-- Resources: Files & Videos -->
+        <section class="grid two section-gap">
+          <!-- Files Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-folder"></i> Files & Documents</h3>
+              <button class="button secondary" id="uploadFileBtn">
+                <i class="fa-solid fa-upload"></i> Upload
+              </button>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg,.jpeg,.zip" />
+            <div id="filesList" class="resources-list">
+              <p class="empty-state">No files uploaded yet. Click "Upload" to add documents.</p>
+            </div>
+          </div>
+
+          <!-- Videos Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-video"></i> Learning Videos</h3>
+            </div>
+            <div class="video-input-section">
+              <input type="text" id="videoUrlInput" placeholder="Paste YouTube, Vimeo, or video URL here..." />
+              <input type="text" id="videoTitleInput" placeholder="Video title (optional)" />
+              <button class="button" id="addVideoBtn">
+                <i class="fa-solid fa-plus"></i> Add Video
+              </button>
+            </div>
+            <div id="videosList" class="resources-list">
+              <p class="empty-state">No videos added yet. Paste a video URL and click "Add Video".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Video Player Modal -->
+        <div id="videoPlayerModal" class="video-modal">
+          <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="video-player-container" id="videoPlayerContainer"></div>
+          </div>
+        </div>
+
+        <!-- Speech + Verse -->
+        <section class="grid two section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Speech</h3>
+            </div>
+            <div class="speech-text" id="scheduledSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="scheduledVerse"></p>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer section-gap">
+          <div class="card">
+            <div class="card-title"><h3>Footer Quote</h3></div>
+            <p id="footerQuote"></p>
+          </div>
+          <div class="card">
+            <div class="card-title"><h3>Daily Speech</h3></div>
+            <div class="speech-text" id="footerSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title"><h3>Verse for Today (NIV)</h3></div>
+            <p id="footerVerse"></p>
+          </div>
+        </footer>
+      </main>
+
+    <script src="resources-manager.js?v=20260219"></script>
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

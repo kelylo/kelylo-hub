@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>English | Ambition Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <link rel="preload" href="images/5.jpg" as="image" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body data-skill="english">
+    <!-- ── TOP NAV ──────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+      <main class="main">
+        <!-- Skill Hero Section -->
+        <div class="skill-hero fade-in">
+          <img src="images/5.jpg" alt="English" class="skill-hero-image" loading="lazy" decoding="async">
+          <div class="skill-hero-overlay"></div>
+          <div class="skill-hero-content">
+            <span class="badge"><i id="skillIcon" class="fa-solid fa-language"></i> English Mode</span>
+            <h1 id="skillTitle">Kelylo English</h1>
+            <p id="skillWhy"><h2>English multiplies your opportunities. Daily immersion builds fluency.</h2> <br> <h3><ul>
+              <li>Bing able to travel and work everywhere</li>
+              <li>Starting your podcast, your calling and your mission</li>
+              <li>Nowadays, the education only is not enough: you need communication. English is the key</li>
+              <li>Imagine what would be possible with English fluency</li>
+              <li>You can now access global opportunities and connect with people worldwide</li>
+            </ul>
+            </h3>
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center;">
+          <span class="accent-badge" id="timeBadge"><i class="fa-solid fa-clock"></i> 1 hour daily</span>
+        </div>
+
+        <section class="grid two fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Focus</h3>
+              <button class="button secondary" id="refreshFocus">Refresh</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="todayFocus"></strong>
+              <span class="badge">Speak, write, think.</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Immersion Plan</h3>
+              <button class="button secondary" id="englishRefresh">New Plan</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="englishPlan"></strong>
+              <span class="badge">1 hour daily.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Vital 20% Tasks</h3>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="task-input">
+              <input id="newTaskInput" type="text" placeholder="Add a new vital task" />
+              <button class="button" id="addTaskBtn">Add</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Notes</h3>
+            </div>
+            <textarea class="notes" id="notesInput" placeholder="Vocabulary, phrases, reflections..."></textarea>
+          </div>
+        </section>
+
+        <!-- Resources: Files & Videos -->
+        <section class="grid two section-gap">
+          <!-- Files Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-folder"></i> Files & Documents</h3>
+              <button class="button secondary" id="uploadFileBtn">
+                <i class="fa-solid fa-upload"></i> Upload
+              </button>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg,.jpeg,.zip" />
+            <div id="filesList" class="resources-list">
+              <p class="empty-state">No files uploaded yet. Click "Upload" to add documents.</p>
+            </div>
+          </div>
+
+          <!-- Videos Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-video"></i> Learning Videos</h3>
+            </div>
+            <div class="video-input-section">
+              <input type="text" id="videoUrlInput" placeholder="Paste YouTube, Vimeo, or video URL here..." />
+              <input type="text" id="videoTitleInput" placeholder="Video title (optional)" />
+              <button class="button" id="addVideoBtn">
+                <i class="fa-solid fa-plus"></i> Add Video
+              </button>
+            </div>
+            <div id="videosList" class="resources-list">
+              <p class="empty-state">No videos added yet. Paste a video URL and click "Add Video".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Video Player Modal -->
+        <div id="videoPlayerModal" class="video-modal">
+          <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="video-player-container" id="videoPlayerContainer"></div>
+          </div>
+        </div>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Speech</h3>
+            </div>
+            <div class="speech-text" id="scheduledSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="scheduledVerse"></p>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Skill Wisdom</h3>
+            </div>
+            <p>Benjamin Franklin said, "An investment in knowledge pays the best interest."</p>
+            <p>Robert Greene noted, "The future belongs to those who learn more skills and combine them in creative ways."</p>
+          </div>
+        </section>
+
+        <footer class="app-footer fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Footer Quote</h3>
+            </div>
+            <p id="footerQuote"></p>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Speech</h3>
+            </div>
+            <div class="speech-text" id="footerSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="footerVerse"></p>
+          </div>
+        </footer>
+      </main>
+      
+      <div class="site-credit">
+        Made with <i class="fa-solid fa-heart"></i> by kevin for ambitious learners
+      </div>
+
+    <!-- AI Assistant Scripts -->
+    <script src="config.js"></script>
+    <script src="knowledge-base.js"></script>
+    <script src="ai-manager.js"></script>
+    <script src="ai-chat-ui.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="resources-manager.js?v=20260219"></script>
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

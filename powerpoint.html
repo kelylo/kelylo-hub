@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>PowerPoint | Ambition Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <link rel="preload" href="images/10.jpg" as="image" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body data-skill="powerpoint">
+    <!-- ── TOP NAV ──────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+      <main class="main">
+        <!-- Skill Hero Section -->
+        <div class="skill-hero fade-in">
+          <img src="images/10.jpg" alt="PowerPoint" class="skill-hero-image" loading="lazy" decoding="async">
+          <div class="skill-hero-overlay"></div>
+          <div class="skill-hero-content">
+            <span class="badge"><i id="skillIcon" class="fa-solid fa-file-powerpoint"></i> Focus Mode</span>
+            <h1 id="skillTitle">PowerPoint</h1>
+            <p id="skillWhy">Slide clarity turns ideas into buy-in. You design once and reuse forever.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center;">
+          <span class="accent-badge" id="timeBadge"><i class="fa-solid fa-clock"></i> 2.5 hours today</span>
+        </div>
+
+        <section class="grid two fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Focus</h3>
+              <button class="button secondary" id="refreshFocus">Refresh</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="todayFocus"></strong>
+              <span class="badge">Design with intention.</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Vital 20% Tasks</h3>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="task-input">
+              <input id="newTaskInput" type="text" placeholder="Add a new vital task" />
+              <button class="button" id="addTaskBtn">Add</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Notes</h3>
+            </div>
+            <textarea class="notes" id="notesInput" placeholder="Write what you learned, mistakes, next steps..."></textarea>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Microsoft PowerPoint 80/20 Roadmap</h3>
+            </div>
+            <p><strong>Total time:</strong> 2-3 weeks at 3 hours/day.</p>
+            <p><strong>Core philosophy:</strong> 20% of features deliver 80% of presentation impact.</p>
+
+            <h4>Week 1: Structure &amp; Efficiency</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 1</td>
+                  <td>Slide Master</td>
+                  <td>Change one master slide, update all slides.</td>
+                  <td>Create a custom layout with logo, colors, fonts.</td>
+                </tr>
+                <tr>
+                  <td>Day 2</td>
+                  <td>Layouts &amp; Placeholders</td>
+                  <td>Content flows in consistent containers.</td>
+                  <td>Create a layout with a picture placeholder.</td>
+                </tr>
+                <tr>
+                  <td>Day 3</td>
+                  <td>Themes &amp; Variants</td>
+                  <td>One click changes the whole deck.</td>
+                  <td>Apply themes and customize colors.</td>
+                </tr>
+                <tr>
+                  <td>Day 4</td>
+                  <td>Outlining in Word/Navigation</td>
+                  <td>Structure before design.</td>
+                  <td>Import a Word outline into PowerPoint.</td>
+                </tr>
+                <tr>
+                  <td>Day 5</td>
+                  <td>Section Breaks</td>
+                  <td>Organize large decks.</td>
+                  <td>Create sections and reorder them.</td>
+                </tr>
+                <tr>
+                  <td>Day 6</td>
+                  <td>Selection Pane</td>
+                  <td>Manage layers and hidden objects.</td>
+                  <td>Use Selection Pane on a slide with 10 objects.</td>
+                </tr>
+                <tr>
+                  <td>Day 7</td>
+                  <td>Project: Master Deck</td>
+                  <td>Create a reusable template.</td>
+                  <td>Build a master deck with 5 custom layouts.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 2: Visual Communication</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 8</td>
+                  <td>SmartArt</td>
+                  <td>Convert bullets into diagrams.</td>
+                  <td>Convert a 5-item list into SmartArt.</td>
+                </tr>
+                <tr>
+                  <td>Day 9</td>
+                  <td>Charts &amp; Tables</td>
+                  <td>Linked data that updates.</td>
+                  <td>Link an Excel chart and format a table.</td>
+                </tr>
+                <tr>
+                  <td>Day 10</td>
+                  <td>Images: Format &amp; Crop</td>
+                  <td>Polished visuals fast.</td>
+                  <td>Remove background, crop to shape, add shadow.</td>
+                </tr>
+                <tr>
+                  <td>Day 11</td>
+                  <td>Icons &amp; 3D Models</td>
+                  <td>Modern, scalable graphics.</td>
+                  <td>Insert icons and a 3D model.</td>
+                </tr>
+                <tr>
+                  <td>Day 12</td>
+                  <td>Align &amp; Distribute</td>
+                  <td>Professional spacing.</td>
+                  <td>Align and distribute shapes, then group them.</td>
+                </tr>
+                <tr>
+                  <td>Day 13</td>
+                  <td>Format Painter &amp; Eyedropper</td>
+                  <td>Copy styles instantly.</td>
+                  <td>Use Format Painter on 10 objects.</td>
+                </tr>
+                <tr>
+                  <td>Day 14</td>
+                  <td>Project: Technical Presentation</td>
+                  <td>10-slide engineering presentation.</td>
+                  <td>Use SmartArt, charts, images, alignment.</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h4>Week 3: Delivery &amp; Polish</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Day 15</td>
+                  <td>Animations (Basic)</td>
+                  <td>Reveal complex info cleanly.</td>
+                  <td>Add fade animations to bullet points.</td>
+                </tr>
+                <tr>
+                  <td>Day 16</td>
+                  <td>Transitions (Subtle)</td>
+                  <td>Professional flow with Morph/Fade.</td>
+                  <td>Apply Morph between two slides.</td>
+                </tr>
+                <tr>
+                  <td>Day 17</td>
+                  <td>Presenter View</td>
+                  <td>Notes, timer, next slide.</td>
+                  <td>Practice with notes using Presenter View.</td>
+                </tr>
+                <tr>
+                  <td>Day 18</td>
+                  <td>Rehearse with Coach</td>
+                  <td>Feedback on pacing and delivery.</td>
+                  <td>Run Rehearse with Coach and adjust.</td>
+                </tr>
+                <tr>
+                  <td>Day 19</td>
+                  <td>Recording &amp; Narration</td>
+                  <td>Export as video with narration.</td>
+                  <td>Record narration and export MP4.</td>
+                </tr>
+                <tr>
+                  <td>Day 20</td>
+                  <td>Export Options</td>
+                  <td>PDF handouts and packaging.</td>
+                  <td>Export handouts and package presentation.</td>
+                </tr>
+                <tr>
+                  <td>Day 21</td>
+                  <td>Final Project</td>
+                  <td>Deliver a 15-minute presentation.</td>
+                  <td>Use masters, visuals, notes, and export.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>PowerPoint Mastery Checklist</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Skill</th>
+                  <th>Mastered?</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Slide Master &amp; Layouts</td><td>☐</td><td></td></tr>
+                <tr><td>Themes &amp; Custom Colors</td><td>☐</td><td></td></tr>
+                <tr><td>Selection Pane</td><td>☐</td><td></td></tr>
+                <tr><td>SmartArt (convert &amp; customize)</td><td>☐</td><td></td></tr>
+                <tr><td>Charts (linked to Excel)</td><td>☐</td><td></td></tr>
+                <tr><td>Image editing (remove bg, crop)</td><td>☐</td><td></td></tr>
+                <tr><td>Align &amp; Distribute objects</td><td>☐</td><td></td></tr>
+                <tr><td>Format Painter</td><td>☐</td><td></td></tr>
+                <tr><td>Morph transition</td><td>☐</td><td></td></tr>
+                <tr><td>Presenter View</td><td>☐</td><td></td></tr>
+                <tr><td>Rehearse with Coach</td><td>☐</td><td></td></tr>
+                <tr><td>Export as video/PDF</td><td>☐</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>The 80/20 Truth (Word vs PowerPoint)</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>Word</th>
+                  <th>PowerPoint</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>The 20% that matters most</td><td>Styles &amp; Section Breaks</td><td>Slide Master &amp; Layouts</td></tr>
+                <tr><td>What most users miss</td><td>Navigation Pane, Cross-references</td><td>Selection Pane, Align tools</td></tr>
+                <tr><td>What pros automate</td><td>Styles, TOC, Captions</td><td>Master Slides, Themes</td></tr>
+                <tr><td>The time-saver</td><td>Keyboard shortcuts</td><td>Format Painter</td></tr>
+                <tr><td>Collaboration feature</td><td>Track Changes</td><td>Comments &amp; Rehearse</td></tr>
+                <tr><td>Export secret</td><td>PDF with bookmarks</td><td>Video with narration</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Practice Routine</h3>
+            </div>
+            <ol>
+              <li>Open the software.</li>
+              <li>Review yesterday's skills (5 min).</li>
+              <li>Watch a tutorial on today's feature (10 min).</li>
+              <li>Replicate exactly what you saw (10 min).</li>
+              <li>Apply it to your own project (5 min).</li>
+            </ol>
+            <p><strong>Next 2 hours:</strong> Work through hands-on tasks. Break the feature, fix it, understand it.</p>
+            <p><strong>Last 30 minutes:</strong> Self-test from memory. Write down one insight. Preview tomorrow.</p>
+            <p><em>Remember:</em> "The capacity to learn is a gift; the ability to learn is a skill; the willingness to learn is a choice."</p>
+          </div>
+        </section>
+
+        <!-- Resources: Files & Videos -->
+        <section class="grid two section-gap">
+          <!-- Files Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-folder"></i> Files & Documents</h3>
+              <button class="button secondary" id="uploadFileBtn">
+                <i class="fa-solid fa-upload"></i> Upload
+              </button>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg,.jpeg,.zip" />
+            <div id="filesList" class="resources-list">
+              <p class="empty-state">No files uploaded yet. Click "Upload" to add documents.</p>
+            </div>
+          </div>
+
+          <!-- Videos Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-video"></i> Learning Videos</h3>
+            </div>
+            <div class="video-input-section">
+              <input type="text" id="videoUrlInput" placeholder="Paste YouTube, Vimeo, or video URL here..." />
+              <input type="text" id="videoTitleInput" placeholder="Video title (optional)" />
+              <button class="button" id="addVideoBtn">
+                <i class="fa-solid fa-plus"></i> Add Video
+              </button>
+            </div>
+            <div id="videosList" class="resources-list">
+              <p class="empty-state">No videos added yet. Paste a video URL and click "Add Video".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Video Player Modal -->
+        <div id="videoPlayerModal" class="video-modal">
+          <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="video-player-container" id="videoPlayerContainer"></div>
+          </div>
+        </div>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Speech</h3>
+            </div>
+            <div class="speech-text" id="scheduledSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="scheduledVerse"></p>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Skill Wisdom</h3>
+            </div>
+            <p>Benjamin Franklin said, "An investment in knowledge pays the best interest."</p>
+            <p>Robert Greene noted, "The future belongs to those who learn more skills and combine them in creative ways."</p>
+          </div>
+        </section>
+
+        <footer class="app-footer fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Footer Quote</h3>
+            </div>
+            <p id="footerQuote"></p>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Speech</h3>
+            </div>
+            <div class="speech-text" id="footerSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="footerVerse"></p>
+          </div>
+        </footer>
+      </main>
+      
+      <div class="site-credit">
+        Made with <i class="fa-solid fa-heart"></i> by kevin for ambitious learners
+      </div>
+
+    <!-- AI Assistant Scripts -->
+    <script src="config.js"></script>
+    <script src="knowledge-base.js"></script>
+    <script src="ai-manager.js"></script>
+    <script src="ai-chat-ui.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="resources-manager.js?v=20260219"></script>
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>AutoCAD | Ambition Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <link rel="preload" href="images/6.jpg" as="image" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body data-skill="autocad">
+    <!-- ── TOP NAV ──────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+      <main class="main">
+        <!-- Skill Hero Section -->
+        <div class="skill-hero fade-in">
+          <img src="images/2.jpg" alt="AutoCAD" class="skill-hero-image" loading="lazy" decoding="async">
+          <div class="skill-hero-overlay"></div>
+          <div class="skill-hero-content">
+            <span class="badge"><i id="skillIcon" class="fa-solid fa-ruler-combined"></i> Focus Mode</span>
+            <h1 id="skillTitle">AutoCAD</h1>
+            <p id="skillWhy">Precision drafting means trust. AutoCAD is how ideas become plans.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center;">
+          <span class="accent-badge" id="timeBadge"><i class="fa-solid fa-clock"></i> 2.5 hours today</span>
+        </div>
+
+        <section class="grid two fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Focus</h3>
+              <button class="button secondary" id="refreshFocus">Refresh</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="todayFocus"></strong>
+              <span class="badge">Draw fast, draw clean.</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Vital 20% Tasks</h3>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="task-input">
+              <input id="newTaskInput" type="text" placeholder="Add a new vital task" />
+              <button class="button" id="addTaskBtn">Add</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Notes</h3>
+            </div>
+            <textarea class="notes" id="notesInput" placeholder="Write what you learned, mistakes, next steps..."></textarea>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>AutoCAD 80/20 Roadmap</h3>
+            </div>
+            <p><strong>Total time:</strong> 6-8 weeks at 3 hours/day.</p>
+            <p><strong>Core philosophy:</strong> AutoCAD is about workflow speed and drawing intelligence. Master the few commands that do most of the work.</p>
+
+            <h4>Phase 1: Foundation &amp; Interface (Weeks 1-2)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 1</td><td>Interface &amp; Workspace</td><td>Know where everything lives.</td><td>Explore Ribbon, Command Line, Model/Layout tabs.</td></tr>
+                <tr><td>Day 2</td><td>Zoom (Z) &amp; Pan</td><td>Navigate without losing your place.</td><td>Practice Zoom Extents, Window, and Pan.</td></tr>
+                <tr><td>Day 3</td><td>Units &amp; Limits</td><td>Prevent scale disasters.</td><td>Set units and limits for a new drawing.</td></tr>
+                <tr><td>Day 4</td><td>Line (L) &amp; Coordinates</td><td>Foundation of drafting.</td><td>Draw a 10x10 square using coordinate methods.</td></tr>
+                <tr><td>Day 5</td><td>Circle/Arc/Rectangle</td><td>Basic geometry for elements.</td><td>Draw columns, beams, and curved walls.</td></tr>
+                <tr><td>Day 6</td><td>Polyline (PL)</td><td>Single connected object.</td><td>Draw a floor outline as one polyline.</td></tr>
+                <tr><td>Day 7</td><td>Project: Simple Floor Plan</td><td>Combine basics into a layout.</td><td>Draw walls, doors, and windows. Save as DWG.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 2: Precision &amp; Editing (Weeks 3-4)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 8</td><td>Object Snaps (OSNAP)</td><td>Professional precision.</td><td>Set running snaps and practice.</td></tr>
+                <tr><td>Day 9</td><td>Ortho (F8) &amp; Polar (F10)</td><td>Controlled angles.</td><td>Draw with Ortho, then Polar at 30 degrees.</td></tr>
+                <tr><td>Day 10</td><td>Selection Methods</td><td>Window vs Crossing.</td><td>Practice selection differences.</td></tr>
+                <tr><td>Day 11</td><td>Trim (TR) &amp; Extend (EX)</td><td>Clean intersections.</td><td>Trim and extend intersecting lines.</td></tr>
+                <tr><td>Day 12</td><td>Offset (O)</td><td>Parallel lines fast.</td><td>Offset centerlines to create walls.</td></tr>
+                <tr><td>Day 13</td><td>Move/Copy/Rotate</td><td>Adjust without redrawing.</td><td>Copy a column grid, move and rotate elements.</td></tr>
+                <tr><td>Day 14</td><td>Mirror &amp; Array</td><td>Symmetry and repetition.</td><td>Mirror half a plan and array columns.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 3: Organization &amp; Intelligence (Weeks 5-6)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 15</td><td>Layers (LA)</td><td>Keep drawings readable.</td><td>Create layers and assign objects.</td></tr>
+                <tr><td>Day 16</td><td>Layer States</td><td>Control visibility/printing.</td><td>Freeze and lock layers.</td></tr>
+                <tr><td>Day 17</td><td>Properties &amp; Matchprop</td><td>Edit and copy properties.</td><td>Change lineweights and match properties.</td></tr>
+                <tr><td>Day 18</td><td>Blocks &amp; Insert</td><td>Reusable symbols.</td><td>Create and insert a door block.</td></tr>
+                <tr><td>Day 19</td><td>WBlock</td><td>Reusable files across projects.</td><td>Export a block and reinsert it.</td></tr>
+                <tr><td>Day 20</td><td>Hatch (H)</td><td>Material indication.</td><td>Hatch concrete and steel patterns.</td></tr>
+                <tr><td>Day 21</td><td>Project: Structural Grid</td><td>Grid with blocks and hatch.</td><td>Create grid, insert columns, hatch.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 4: Annotation &amp; Communication (Weeks 7-8)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 22</td><td>Text &amp; MText</td><td>Labels and notes.</td><td>Add room labels and notes.</td></tr>
+                <tr><td>Day 23</td><td>Text Styles</td><td>Consistency.</td><td>Create Title and Notes styles.</td></tr>
+                <tr><td>Day 24</td><td>Dimensioning</td><td>Convey size.</td><td>Dimension the floor plan.</td></tr>
+                <tr><td>Day 25</td><td>Dimension Styles</td><td>Control arrows and text.</td><td>Create two dimension styles.</td></tr>
+                <tr><td>Day 26</td><td>Leader &amp; Multileader</td><td>Connect notes.</td><td>Add leader to column note.</td></tr>
+                <tr><td>Day 27</td><td>Annotative Scaling</td><td>Text resizes by viewport.</td><td>Set annotative scales 1:50 and 1:100.</td></tr>
+                <tr><td>Day 28</td><td>Project: Annotated Drawing</td><td>Complete floor plan.</td><td>Add dimensions, notes, title block.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 5: Paper Space &amp; Output (Weeks 9-10)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 29</td><td>Model Space vs Paper Space</td><td>Professional plotting.</td><td>Explain the difference in your notes.</td></tr>
+                <tr><td>Day 30</td><td>Layouts &amp; Viewports</td><td>Multiple views on one sheet.</td><td>Create layout and viewport.</td></tr>
+                <tr><td>Day 31</td><td>Viewport Scaling</td><td>Correct print scales.</td><td>Set 1:50 scale and lock viewport.</td></tr>
+                <tr><td>Day 32</td><td>Viewport Layers</td><td>Control visibility per view.</td><td>Freeze layers per viewport.</td></tr>
+                <tr><td>Day 33</td><td>Title Blocks</td><td>Professional presentation.</td><td>Create title block with attributes.</td></tr>
+                <tr><td>Day 34</td><td>Page Setup</td><td>Plot settings.</td><td>Create page setup for A1/ARCH D.</td></tr>
+                <tr><td>Day 35</td><td>Plot to PDF</td><td>Deliverable output.</td><td>Plot and check lineweights.</td></tr>
+                <tr><td>Day 36</td><td>Project: Drawing Set</td><td>Multi-view deliverable.</td><td>Create plan, detail, section views.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 6: Advanced Efficiency (Weeks 11-12)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 37</td><td>Fillet &amp; Chamfer</td><td>Quick corner control.</td><td>Fillet radius 0 and radius 2.</td></tr>
+                <tr><td>Day 38</td><td>Stretch</td><td>Resize without redrawing.</td><td>Stretch a room longer.</td></tr>
+                <tr><td>Day 39</td><td>Break &amp; Join</td><td>Split or combine objects.</td><td>Break a line and join it.</td></tr>
+                <tr><td>Day 40</td><td>Explode</td><td>Edit block components.</td><td>Explode a block and edit lines.</td></tr>
+                <tr><td>Day 41</td><td>Purge</td><td>Clean file size.</td><td>Purge unused items.</td></tr>
+                <tr><td>Day 42</td><td>XREF</td><td>Collaborate with references.</td><td>XREF an architectural base file.</td></tr>
+                <tr><td>Day 43</td><td>Design Center</td><td>Reuse content across files.</td><td>Import blocks from another drawing.</td></tr>
+                <tr><td>Day 44</td><td>Tool Palettes</td><td>One-click inserts.</td><td>Create palette with column block.</td></tr>
+                <tr><td>Day 45</td><td>Quick Select</td><td>Bulk edits by property.</td><td>Select all A-ANNO text and recolor.</td></tr>
+                <tr><td>Day 46</td><td>Field</td><td>Dynamic text updates.</td><td>Add date and sheet number fields.</td></tr>
+                <tr><td>Day 47</td><td>DWG Convert &amp; eTransmit</td><td>Package for sharing.</td><td>Create an eTransmit package.</td></tr>
+                <tr><td>Day 48</td><td>Final Project</td><td>Complete structural set.</td><td>3-sheet set with plots to PDF.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>The 20% Command List</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Commands</th>
+                  <th>Shortcuts</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Draw</td><td>Line, Polyline, Circle, Rectangle</td><td>L, PL, C, REC</td></tr>
+                <tr><td>Modify</td><td>Trim, Extend, Offset, Copy, Move</td><td>TR, EX, O, CO, M</td></tr>
+                <tr><td>Precision</td><td>Object Snap, Ortho, Polar</td><td>F3, F8, F10</td></tr>
+                <tr><td>Organize</td><td>Layer, Properties, Matchprop</td><td>LA, Ctrl+1, MA</td></tr>
+                <tr><td>Annotate</td><td>Text, Dimension, Leader</td><td>T, DIM, LEADER</td></tr>
+                <tr><td>Blocks</td><td>Block, Insert</td><td>B, I</td></tr>
+                <tr><td>View</td><td>Zoom, Pan</td><td>Z, P</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>AutoCAD Mastery Checklist</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Skill Category</th>
+                  <th>Specific Skill</th>
+                  <th>Mastered?</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Setup</td><td>Units &amp; Limits</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Layers (create, assign, manage)</td><td>☐</td><td></td></tr>
+                <tr><td>Drawing</td><td>Line with coordinates</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Polyline (single object)</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Circle, Arc, Rectangle</td><td>☐</td><td></td></tr>
+                <tr><td>Editing</td><td>Trim / Extend</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Offset</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Copy / Move / Rotate</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Mirror / Array</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Fillet / Chamfer</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Stretch</td><td>☐</td><td></td></tr>
+                <tr><td>Precision</td><td>OSNAP settings</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Ortho / Polar</td><td>☐</td><td></td></tr>
+                <tr><td>Organization</td><td>Blocks (create, insert, edit)</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Hatch</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Properties &amp; Match Properties</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Purge</td><td>☐</td><td></td></tr>
+                <tr><td>Annotation</td><td>Text / MText</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Text Styles</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Dimensioning</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Dimension Styles</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Leader / Multileader</td><td>☐</td><td></td></tr>
+                <tr><td>Output</td><td>Layouts / Viewports</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Viewport Scaling</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Title Blocks</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Page Setup</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Plot to PDF</td><td>☐</td><td></td></tr>
+                <tr><td>Advanced</td><td>XREF</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Tool Palettes</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Design Center</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>Quick Select</td><td>☐</td><td></td></tr>
+                <tr><td></td><td>eTransmit</td><td>☐</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>7-Month Integration Plan (Updated)</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Focus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Month 1</td><td>Word, PowerPoint, Canva</td></tr>
+                <tr><td>Month 2</td><td>Excel</td></tr>
+                <tr><td>Month 3</td><td>AutoCAD (Phases 1-3)</td></tr>
+                <tr><td>Month 4</td><td>AutoCAD (Phases 4-6) + Intro to ROBOT</td></tr>
+                <tr><td>Month 5</td><td>ROBOT + SAP2000 intro</td></tr>
+                <tr><td>Month 6</td><td>SAP2000 advanced</td></tr>
+                <tr><td>Month 7</td><td>Capstone: Same structure in all tools</td></tr>
+              </tbody>
+            </table>
+            <p><em>Remember:</em> Master the core 15 commands until they are muscle memory.</p>
+          </div>
+        </section>
+
+        <!-- Resources: Files & Videos -->
+        <section class="grid two section-gap">
+          <!-- Files Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-folder"></i> Files & Documents</h3>
+              <button class="button secondary" id="uploadFileBtn">
+                <i class="fa-solid fa-upload"></i> Upload
+              </button>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg,.jpeg,.zip" />
+            <div id="filesList" class="resources-list">
+              <p class="empty-state">No files uploaded yet. Click "Upload" to add documents.</p>
+            </div>
+          </div>
+
+          <!-- Videos Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-video"></i> Learning Videos</h3>
+            </div>
+            <div class="video-input-section">
+              <input type="text" id="videoUrlInput" placeholder="Paste YouTube, Vimeo, or video URL here..." />
+              <input type="text" id="videoTitleInput" placeholder="Video title (optional)" />
+              <button class="button" id="addVideoBtn">
+                <i class="fa-solid fa-plus"></i> Add Video
+              </button>
+            </div>
+            <div id="videosList" class="resources-list">
+              <p class="empty-state">No videos added yet. Paste a video URL and click "Add Video".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Video Player Modal -->
+        <div id="videoPlayerModal" class="video-modal">
+          <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="video-player-container" id="videoPlayerContainer"></div>
+          </div>
+        </div>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Speech</h3>
+            </div>
+            <div class="speech-text" id="scheduledSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="scheduledVerse"></p>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Skill Wisdom</h3>
+            </div>
+            <p>Benjamin Franklin said, "An investment in knowledge pays the best interest."</p>
+            <p>Robert Greene noted, "The future belongs to those who learn more skills and combine them in creative ways."</p>
+            <p>You can get anything you want in life if you </p>
+          </div>
+        </section>
+
+        <footer class="app-footer fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Footer Quote</h3>
+            </div>
+            <p id="footerQuote"></p>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Speech</h3>
+            </div>
+            <div class="speech-text" id="footerSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="footerVerse"></p>
+          </div>
+        </footer>
+      </main>
+      
+      <div class="site-credit">
+        Made with <i class="fa-solid fa-heart"></i> by kevin for ambitious learners
+      </div>
+
+    <!-- AI Assistant Scripts -->
+    <script src="config.js"></script>
+    <script src="knowledge-base.js"></script>
+    <script src="ai-manager.js"></script>
+    <script src="ai-chat-ui.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="resources-manager.js?v=20260219"></script>
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

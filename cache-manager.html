@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cache Manager - KELYLO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f68712, #03466e);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #03466e;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #f68712;
+            margin-bottom: 30px;
+        }
+        
+        .info-box {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .cache-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: white;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 3px solid #f68712;
+        }
+        
+        .cache-name {
+            font-weight: 600;
+            color: #03466e;
+        }
+        
+        .cache-size {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        button {
+            background: #f68712;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #03466e;
+            transform: translateY(-2px);
+        }
+        
+        button.danger {
+            background: #ef4444;
+        }
+        
+        button.danger:hover {
+            background: #dc2626;
+        }
+        
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        #result.success {
+            background: #d1fae5;
+            color: #065f46;
+            display: block;
+        }
+        
+        #result.error {
+            background: #fee2e2;
+            color: #991b1b;
+            display: block;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f68712;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🗄️ Cache Manager</h1>
+        <p class="subtitle">Manage your KELYLO PWA caches</p>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value" id="cacheCount">-</div>
+                <div class="stat-label">Total Caches</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalSize">-</div>
+                <div class="stat-label">Estimated Size</div>
+            </div>
+        </div>
+        
+        <div class="info-box" id="cacheList">
+            <p style="color: #666;">Loading cache information...</p>
+        </div>
+        
+        <div style="text-align: center;">
+            <button onclick="refreshCaches()">🔄 Refresh Info</button>
+            <button onclick="clearAllCaches()" class="danger">🗑️ Clear All Caches</button>
+            <button onclick="clearOldCaches()">🧹 Clean Old Versions</button>
+        </div>
+        
+        <div id="result"></div>
+        
+        <div class="info-box" style="margin-top: 30px; background: #fff9e6;">
+            <strong style="color: #f68712;">💡 Tips:</strong>
+            <ul style="margin-top: 10px; padding-left: 20px; color: #666;">
+                <li>Clear caches if site loads slowly</li>
+                <li>Clean old versions to free space</li>
+                <li>Refresh after clearing to rebuild cache</li>
+                <li>Normal size: 500KB - 2MB</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        async function getCacheInfo() {
+            if (!('caches' in window)) {
+                return { caches: [], totalSize: 0 };
+            }
+
+            const cacheNames = await caches.keys();
+            const cacheInfo = [];
+            let totalSize = 0;
+
+            for (const name of cacheNames) {
+                const cache = await caches.open(name);
+                const keys = await cache.keys();
+                const size = keys.length * 50; // Rough estimate in KB
+                totalSize += size;
+                cacheInfo.push({ name, items: keys.length, size });
+            }
+
+            return { caches: cacheInfo, totalSize };
+        }
+
+        async function displayCaches() {
+            const { caches: cacheList, totalSize } = await getCacheInfo();
+            const container = document.getElementById('cacheList');
+            const cacheCount = document.getElementById('cacheCount');
+            const totalSizeEl = document.getElementById('totalSize');
+
+            cacheCount.textContent = cacheList.length;
+            totalSizeEl.textContent = totalSize > 1024 
+                ? `${(totalSize / 1024).toFixed(1)} MB` 
+                : `${totalSize} KB`;
+
+            if (cacheList.length === 0) {
+                container.innerHTML = '<p style="color: #666;">No caches found. Visit app pages to build cache.</p>';
+                return;
+            }
+
+            container.innerHTML = cacheList.map(cache => `
+                <div class="cache-item">
+                    <div>
+                        <div class="cache-name">${cache.name}</div>
+                        <div class="cache-size">${cache.items} items (~${cache.size} KB)</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function clearAllCaches() {
+            if (!confirm('Clear all caches? App will need to reload assets on next visit.')) {
+                return;
+            }
+
+            const result = document.getElementById('result');
+            try {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                
+                result.className = 'success';
+                result.textContent = `✓ Cleared ${cacheNames.length} cache(s). Refresh page to rebuild.`;
+                
+                setTimeout(() => displayCaches(), 1000);
+            } catch (error) {
+                result.className = 'error';
+                result.textContent = `✗ Error: ${error.message}`;
+            }
+        }
+
+        async function clearOldCaches() {
+            const result = document.getElementById('result');
+            try {
+                const cacheNames = await caches.keys();
+                const currentVersion = 'v2.2';
+                const oldCaches = cacheNames.filter(name => !name.includes(currentVersion));
+                
+                if (oldCaches.length === 0) {
+                    result.className = 'success';
+                    result.textContent = '✓ No old caches found. You\'re up to date!';
+                    return;
+                }
+                
+                await Promise.all(oldCaches.map(name => caches.delete(name)));
+                
+                result.className = 'success';
+                result.textContent = `✓ Removed ${oldCaches.length} old cache(s). ${cacheNames.length - oldCaches.length} current cache(s) kept.`;
+                
+                setTimeout(() => displayCaches(), 1000);
+            } catch (error) {
+                result.className = 'error';
+                result.textContent = `✗ Error: ${error.message}`;
+            }
+        }
+
+        async function refreshCaches() {
+            document.getElementById('result').style.display = 'none';
+            await displayCaches();
+        }
+
+        // Initialize
+        displayCaches();
+    </script>
+</body>
+</html>

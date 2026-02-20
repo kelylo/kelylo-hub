@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>The Ambition Hub | KELYLO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <!-- Removed image preload for faster initial load -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml" />
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body data-page="landing">
+
+    <!-- ── TOP NAV ─────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+    <main class="main">
+
+      <!-- ── HERO ──────────────────────────────────────────────────────── -->
+      <div class="hero-section">
+        <img src="images/1.jpg" alt="Ambition Hero" class="hero-image" loading="eager" decoding="async" />
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <span class="hero-tagline"><span id="heroTaglineQuote">Master Your Craft</span></span>
+          <h1 data-i18n="hero.title">BECOME SOMEBODY<br>WORTH KNOWING: A BEAST</h1>
+          <p data-i18n="hero.subtitle">7 months &bull; 20 hours/week &bull; Master the 20% that delivers 80%</p>
+          <div class="hero-actions">
+            <a href="#skills" class="btn-hero">
+              <i class="fa-solid fa-arrow-down"></i> Explore Skills
+            </a>
+            <div class="hero-countdown">
+              <i class="fa-solid fa-clock"></i>
+              <span>Countdown:&nbsp;</span><strong id="heroCountdown"></strong>
+            </div>
+          </div>
+        </div>
+        <button class="hero-arrow hero-arrow-prev" id="heroPrev" aria-label="Previous">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="hero-arrow hero-arrow-next" id="heroNext" aria-label="Next">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+        <div class="hero-dots" id="heroDots"></div>
+      </div>
+
+      <!-- ── SKILLS GRID ────────────────────────────────────────────────── -->
+      <section id="skills" style="padding-top: 56px; padding-bottom: 48px;">
+        <div style="margin-bottom: 28px; display: flex; align-items: center; gap: 16px;">
+          <span class="section-accent">Our Skills</span>
+          <h2 class="section-title" data-i18n="skills.title">8 Tools to Master</h2>
+        </div>
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Cards rendered by JS if skills match; fallback static set below -->
+          <a href="word.html" class="skill-card" data-color="blue">
+            <img src="images/9.jpg" alt="Word" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-file-word"></i><span>Word</span>
+            </div>
+          </a>
+          <a href="powerpoint.html" class="skill-card" data-color="pink">
+            <img src="images/10.jpg" alt="PowerPoint" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-file-powerpoint"></i><span>PowerPoint</span>
+            </div>
+          </a>
+          <a href="canva.html" class="skill-card" data-color="green">
+            <img src="images/11.jpg" alt="Canva" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-palette"></i><span>Canva</span>
+            </div>
+          </a>
+          <a href="excel.html" class="skill-card" data-color="green">
+            <img src="images/12.jpg" alt="Excel" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-file-excel"></i><span>Excel</span>
+            </div>
+          </a>
+          <a href="autocad.html" class="skill-card" data-color="orange">
+            <img src="images/2.jpg" alt="AutoCAD" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-ruler-combined"></i><span>AutoCAD</span>
+            </div>
+          </a>
+          <a href="sap2000.html" class="skill-card" data-color="blue">
+            <img src="images/3.jpg" alt="SAP2000" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-diagram-project"></i><span>SAP2000</span>
+            </div>
+          </a>
+          <a href="robot.html" class="skill-card" data-color="purple">
+            <img src="images/4.jpg" alt="ROBOT" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-robot"></i><span>ROBOT</span>
+            </div>
+          </a>
+          <a href="english.html" class="skill-card" data-color="purple">
+            <img src="images/5.jpg" alt="English" loading="lazy" decoding="async" />
+            <div class="skill-card-content">
+              <i class="fa-solid fa-language"></i><span>English</span>
+            </div>
+          </a>
+          <button class="skill-card skill-card--manage open-skill-manager" aria-label="Manage Skills">
+            <div class="skill-card-content skill-card-content--manage">
+              <i class="fa-solid fa-sliders"></i><span>Manage Skills</span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <!-- ── CAROUSEL + INFO ────────────────────────────────────────────── -->
+      <section class="content-row" style="padding-top: 0; padding-bottom: 40px;">
+        <div class="carousel-wrapper">
+          <div class="carousel">
+            <div class="carousel-track" id="carouselTrack"></div>
+            <div class="carousel-controls">
+              <button id="carouselPrev" aria-label="Previous slide"><i class="fa-solid fa-chevron-left"></i></button>
+              <button id="carouselNext" aria-label="Next slide"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+          </div>
+        </div>
+
+        <div class="sidebar-content">
+          <div class="info-card">
+            <h3 data-i18n="why.title">Your Why</h3>
+            <p id="whyEditable" contenteditable="true" data-i18n="why.default">
+              I'm tired of being broke. In 7 months, I will master the skills that will make me valuable enough to change my life. <br>NO EXCUSES
+            </p>
+          </div>
+          <div class="info-card">
+            <h3 data-i18n="countdown.title">Time Left</h3>
+            <div class="countdown" id="countdown"></div>
+            <small data-i18n="countdown.target">Target: Sept 20, 2026</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── DAILY QUOTE + MOTIVATION ───────────────────────────────────── -->
+      <section class="bottom-cards" style="padding-bottom: 60px;">
+        <div class="quote-card" style="background-image: url('images/6.jpg')">
+          <h3 data-i18n="dailyQuote.title">Daily Quote</h3>
+          <p id="dailyQuote"></p>
+        </div>
+        <div class="quote-card" style="background-image: url('images/7.jpg')">
+          <h3 data-i18n="motivation.title">Motivation</h3>
+          <p id="speechText"></p>
+          <button class="btn-refresh" id="speechRefresh" aria-label="Refresh motivation">
+            <i class="fa-solid fa-rotate"></i>
+          </button>
+        </div>
+      </section>
+
+    </main>
+    
+    <div class="site-credit">
+      Made with <i class="fa-solid fa-heart"></i> by kevin for ambitious learners
+    </div>
+
+    <!-- AI Assistant Scripts -->
+    <script src="config.js"></script>
+    <script src="knowledge-base.js"></script>
+    <script src="ai-manager.js"></script>
+    <script src="ai-chat-ui.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "KELYLO - The Ambition Hub",
+  "short_name": "KELYLO",
+  "description": "Master 8 essential skills in 7 months. 20 hours per week. Transform your life.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#f68712",
+  "background_color": "#FFFFFF",
+  "categories": ["education", "productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "images/logo-best.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Skills",
+      "short_name": "Skills",
+      "description": "Browse all 8 mastery skills",
+      "url": "/index.html#skills",
+      "icons": [{ "src": "images/logo-best.svg", "sizes": "96x96" }]
+    }
+  ],
+  "lang": "en",
+  "dir": "ltr"
+}

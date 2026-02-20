@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <title>Robot | Ambition Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preload" href="styles.css?v=20260219" as="style" />
+    <link rel="preload" href="script.js?v=20260219" as="script" />
+    <link rel="preload" href="images/8.jpg" as="image" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap"
+      rel="stylesheet"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      media="print" onload="this.media='all'"
+    />
+    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <link rel="icon" href="images/logo-best.svg" type="image/svg+xml">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#f68712" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <link rel="apple-touch-icon" href="images/logo-best.svg" />
+  </head>
+  <body data-skill="robot">
+    <!-- ── TOP NAV ──────────────────────────────────────────────────────── -->
+    <header class="topnav">
+      <a href="index.html" class="nav-logo-block">
+        <img src="images/logo-best.svg" alt="KELYLO" class="nav-logo" loading="lazy" decoding="async" />
+        <span class="nav-brand-name">KELYLO</span>
+      </a>
+      <nav class="nav-center" id="navLinks"></nav>
+      <div class="nav-actions">
+        <div class="language-switcher">
+          <button class="lang-btn active" data-lang="en">
+            <i class="fa-solid fa-globe"></i><span>EN</span>
+          </button>
+          <button class="lang-btn" data-lang="fr">
+            <i class="fa-solid fa-globe"></i><span>FR</span>
+          </button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+    <!-- Mobile nav drawer -->
+    <nav class="nav-drawer" id="navDrawer"></nav>
+
+      <main class="main">
+        <!-- Skill Hero Section -->
+        <div class="skill-hero fade-in">
+          <img src="images/4.jpg" alt="ROBOT Autodesk" class="skill-hero-image" loading="lazy" decoding="async">
+          <div class="skill-hero-overlay"></div>
+          <div class="skill-hero-content">
+            <span class="badge"><i id="skillIcon" class="fa-solid fa-robot"></i> Focus Mode</span>
+            <h1 id="skillTitle">ROBOT Autodesk</h1>
+            <p id="skillWhy">Robot turns loads into decisions. Learn the workflow and the results.</p>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 20px; display: flex; gap: 12px; align-items: center;">
+          <span class="accent-badge" id="timeBadge"><i class="fa-solid fa-clock"></i> 2.5 hours today</span>
+        </div>
+
+        <section class="grid two fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Focus</h3>
+              <button class="button secondary" id="refreshFocus">Refresh</button>
+            </div>
+            <div class="focus-banner">
+              <strong id="todayFocus"></strong>
+              <span class="badge">Learn the interface edge.</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>Vital 20% Tasks</h3>
+            </div>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="task-input">
+              <input id="newTaskInput" type="text" placeholder="Add a new vital task" />
+              <button class="button" id="addTaskBtn">Add</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Notes</h3>
+            </div>
+            <textarea class="notes" id="notesInput" placeholder="Write what you learned, mistakes, next steps..."></textarea>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Autodesk ROBOT Structural Analysis 80/20 Roadmap</h3>
+            </div>
+            <p><strong>Total time:</strong> 6-8 weeks at 3 hours/day.</p>
+            <p><strong>Core philosophy:</strong> Master the workflow: model, load, analyze, design, verify.</p>
+
+            <h4>Phase 1: Foundation &amp; Interface (Weeks 1-2)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 1</td><td>Interface Orientation</td><td>Right mode for the right action.</td><td>Identify Structure, Load, Analysis, Results modes.</td></tr>
+                <tr><td>Day 2</td><td>Job Preferences</td><td>Design code affects everything.</td><td>Set EC3/EC2, units kN/m.</td></tr>
+                <tr><td>Day 3</td><td>Grids &amp; Stories</td><td>Fast vertical repetition.</td><td>3x3 grid, 5 stories at 3.5m.</td></tr>
+                <tr><td>Day 4</td><td>Materials</td><td>Correct properties drive results.</td><td>Create C30/37, S355.</td></tr>
+                <tr><td>Day 5</td><td>Section Definitions</td><td>Realistic member sizes.</td><td>IPE300, HE200B, 300x300 column.</td></tr>
+                <tr><td>Day 6</td><td>Simple 2D Frame</td><td>Base modeling skills.</td><td>2-bay, 3-story frame with supports.</td></tr>
+                <tr><td>Day 7</td><td>Project: 2D Portal Frame</td><td>Complete model ready for analysis.</td><td>Model steel portal and save template.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 2: Loading &amp; Combinations (Weeks 3-4)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 8</td><td>Load Types</td><td>DL, LL, WL, SL behave differently.</td><td>Define dead, live, wind loads.</td></tr>
+                <tr><td>Day 9</td><td>Loads on Bars</td><td>Distributed and point loads.</td><td>Apply 20 kN/m and point loads.</td></tr>
+                <tr><td>Day 10</td><td>Loads on Surfaces</td><td>Slabs/walls distribute to supports.</td><td>Create slab, apply 5 kN/m2.</td></tr>
+                <tr><td>Day 11</td><td>Load Combinations (Manual)</td><td>Understand 1.35G + 1.5Q.</td><td>Create ULS and SLS combos.</td></tr>
+                <tr><td>Day 12</td><td>Automatic Combinations</td><td>Code-based generation.</td><td>Generate and verify combos.</td></tr>
+                <tr><td>Day 13</td><td>Moving Loads</td><td>Bridge/crane behavior.</td><td>Define moving load, run influence.</td></tr>
+                <tr><td>Day 14</td><td>Project: Loaded Frame</td><td>Full load case setup.</td><td>Apply all loads and verify combos.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 3: Analysis &amp; Results (Weeks 5-6)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 15</td><td>Running Analysis</td><td>Foundation checks.</td><td>Run linear static, resolve warnings.</td></tr>
+                <tr><td>Day 16</td><td>Deformations</td><td>Serviceability control.</td><td>Check deflection vs span/250.</td></tr>
+                <tr><td>Day 17</td><td>Moments &amp; Shear</td><td>Critical design forces.</td><td>Inspect M and V diagrams.</td></tr>
+                <tr><td>Day 18</td><td>Reactions</td><td>Foundation design inputs.</td><td>Review support reactions.</td></tr>
+                <tr><td>Day 19</td><td>Results on Sections</td><td>Concrete design forces.</td><td>Extract forces at 10 points.</td></tr>
+                <tr><td>Day 20</td><td>Envelopes</td><td>Worst-case values.</td><td>Generate envelopes and identify peaks.</td></tr>
+                <tr><td>Day 21</td><td>Project: Analysis Report</td><td>Document results.</td><td>Create PDF report with plots.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 4: Design &amp; Code-Checking (Weeks 7-8)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 22</td><td>Steel Design Parameters</td><td>Buckling and restraints.</td><td>Set ky, kz, restraints.</td></tr>
+                <tr><td>Day 23</td><td>Run Steel Design</td><td>Check unity ratios.</td><td>Run design and review utilization.</td></tr>
+                <tr><td>Day 24</td><td>Optimization</td><td>Right-size members.</td><td>Resize under/over-utilized sections.</td></tr>
+                <tr><td>Day 25</td><td>Concrete Beams</td><td>Flexure/shear design.</td><td>Design beam and review As.</td></tr>
+                <tr><td>Day 26</td><td>Concrete Columns</td><td>Interaction checks.</td><td>Review N-M interaction ratio.</td></tr>
+                <tr><td>Day 27</td><td>Reinforcement Detailing</td><td>Code minimums.</td><td>Verify spacing and anchorage.</td></tr>
+                <tr><td>Day 28</td><td>RC Slab Design</td><td>Two-way reinforcement.</td><td>Design slab and review rebar maps.</td></tr>
+              </tbody>
+            </table>
+
+            <h4>Phase 5: Advanced &amp; Integration (Weeks 9-10)</h4>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>20% Feature</th>
+                  <th>Why It Matters</th>
+                  <th>Hands-On Task</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Day 29</td><td>Modal Analysis</td><td>Dynamic behavior.</td><td>Run modal analysis, review modes.</td></tr>
+                <tr><td>Day 30</td><td>Response Spectrum</td><td>Seismic loading.</td><td>Run response spectrum, review base shear.</td></tr>
+                <tr><td>Day 31</td><td>P-Delta Analysis</td><td>Second-order effects.</td><td>Compare with/without P-Delta.</td></tr>
+                <tr><td>Day 32</td><td>Import from AutoCAD</td><td>CAD to analysis.</td><td>Import DXF frame.</td></tr>
+                <tr><td>Day 33</td><td>Export to Revit/Excel</td><td>Reporting and coordination.</td><td>Export forces to Excel.</td></tr>
+                <tr><td>Day 34</td><td>Parametric Models</td><td>Fast iterations.</td><td>Change story height variable.</td></tr>
+                <tr><td>Day 35</td><td>Project: 3D Steel Building</td><td>Full steel workflow.</td><td>Model, load, analyze, design.</td></tr>
+                <tr><td>Day 36</td><td>Project: Concrete Building</td><td>Full concrete workflow.</td><td>Model, design beams/columns/slabs.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>ROBOT Mastery Checklist</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Skill</th>
+                  <th>Mastered?</th>
+                  <th>Notes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Job Preferences &amp; Code Setup</td><td>☐</td><td></td></tr>
+                <tr><td>Grids &amp; Stories</td><td>☐</td><td></td></tr>
+                <tr><td>Materials &amp; Sections</td><td>☐</td><td></td></tr>
+                <tr><td>Load Definition (DL, LL, WL)</td><td>☐</td><td></td></tr>
+                <tr><td>Load Combinations (manual + auto)</td><td>☐</td><td></td></tr>
+                <tr><td>Linear Static Analysis</td><td>☐</td><td></td></tr>
+                <tr><td>Results Interpretation (M, V, D, R)</td><td>☐</td><td></td></tr>
+                <tr><td>Steel Design &amp; Unity Checks</td><td>☐</td><td></td></tr>
+                <tr><td>Concrete Beam Design</td><td>☐</td><td></td></tr>
+                <tr><td>Concrete Column Design</td><td>☐</td><td></td></tr>
+                <tr><td>Modal Analysis</td><td>☐</td><td></td></tr>
+                <tr><td>Response Spectrum (seismic)</td><td>☐</td><td></td></tr>
+                <tr><td>Import/Export (DXF, Excel)</td><td>☐</td><td></td></tr>
+                <tr><td>Report Generation</td><td>☐</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Comparison: ROBOT vs SAP2000</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>ROBOT</th>
+                  <th>SAP2000</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Primary Market</td><td>Europe, International</td><td>Americas, Asia, Global</td></tr>
+                <tr><td>Code Coverage</td><td>Eurocodes</td><td>ACI, AISC, also Eurocodes</td></tr>
+                <tr><td>Learning Curve</td><td>Modal interface</td><td>Single window</td></tr>
+                <tr><td>Concrete Design</td><td>Detailed rebar output</td><td>Strong, less visual</td></tr>
+                <tr><td>Steel Design</td><td>Optimization</td><td>Interactive optimization</td></tr>
+                <tr><td>Auto Combinations</td><td>Yes</td><td>Yes</td></tr>
+                <tr><td>API/Programming</td><td>Limited</td><td>Excellent OAPI</td></tr>
+                <tr><td>Import from CAD</td><td>Good (DXF)</td><td>Excellent (DXF, DWG)</td></tr>
+                <tr><td>Price</td><td>Generally lower</td><td>Generally higher</td></tr>
+                <tr><td>Typical Use</td><td>Buildings, bridges</td><td>Complex structures</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>The 20% That Gives 80% (Both Tools)</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>The 20% That Matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Modeling</td><td>Grids, Stories, Materials, Sections</td></tr>
+                <tr><td>Loading</td><td>Load Patterns, Load Combinations</td></tr>
+                <tr><td>Analysis</td><td>Linear Static, Modal, Response Spectrum</td></tr>
+                <tr><td>Results</td><td>Moments, Shears, Deflections, Reactions</td></tr>
+                <tr><td>Design</td><td>Steel: Unity Checks; Concrete: Rebar Area</td></tr>
+                <tr><td>Workflow</td><td>Define -> Assign -> Analyze -> Design -> Report</td></tr>
+                <tr><td>Debugging</td><td>Read logs, check constraints, fix instabilities</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <h3>The Truth About Structural Software</h3>
+            </div>
+            <p>Software amplifies engineering judgment. Always check if results make sense.</p>
+            <ul>
+              <li>Does the result make sense?</li>
+              <li>Is the moment diagram shape correct?</li>
+              <li>Why is this member failing?</li>
+              <li>What happens if I change this support?</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Your 7-Month Integration Plan</h3>
+            </div>
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Month</th>
+                  <th>Focus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Month 1</td><td>Word, PowerPoint, Canva</td></tr>
+                <tr><td>Month 2</td><td>Excel</td></tr>
+                <tr><td>Month 3</td><td>AutoCAD</td></tr>
+                <tr><td>Month 4</td><td>ROBOT (Phases 1-2)</td></tr>
+                <tr><td>Month 5</td><td>ROBOT (Phases 3-4) + SAP2000 (Phases 1-2)</td></tr>
+                <tr><td>Month 6</td><td>SAP2000 (Phases 3-5)</td></tr>
+                <tr><td>Month 7</td><td>Capstone: Design in both, compare results</td></tr>
+              </tbody>
+            </table>
+            <p><em>Remember:</em> "The future belongs to those who learn more skills and combine them in creative ways."</p>
+          </div>
+        </section>
+
+        <!-- Resources: Files & Videos -->
+        <section class="grid two section-gap">
+          <!-- Files Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-folder"></i> Files & Documents</h3>
+              <button class="button secondary" id="uploadFileBtn">
+                <i class="fa-solid fa-upload"></i> Upload
+              </button>
+            </div>
+            <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.png,.jpg,.jpeg,.zip" />
+            <div id="filesList" class="resources-list">
+              <p class="empty-state">No files uploaded yet. Click "Upload" to add documents.</p>
+            </div>
+          </div>
+
+          <!-- Videos Section -->
+          <div class="card">
+            <div class="card-title">
+              <h3><i class="fa-solid fa-video"></i> Learning Videos</h3>
+            </div>
+            <div class="video-input-section">
+              <input type="text" id="videoUrlInput" placeholder="Paste YouTube, Vimeo, or video URL here..." />
+              <input type="text" id="videoTitleInput" placeholder="Video title (optional)" />
+              <button class="button" id="addVideoBtn">
+                <i class="fa-solid fa-plus"></i> Add Video
+              </button>
+            </div>
+            <div id="videosList" class="resources-list">
+              <p class="empty-state">No videos added yet. Paste a video URL and click "Add Video".</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Video Player Modal -->
+        <div id="videoPlayerModal" class="video-modal">
+          <div class="video-modal-content">
+            <button class="video-modal-close" id="closeVideoModal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="video-player-container" id="videoPlayerContainer"></div>
+          </div>
+        </div>
+
+        <section class="grid two fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Today's Speech</h3>
+            </div>
+            <div class="speech-text" id="scheduledSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="scheduledVerse"></p>
+          </div>
+        </section>
+
+        <section class="grid fade-in section-gap">
+          <div class="card">
+            <div class="card-title">
+              <h3>Skill Wisdom</h3>
+            </div>
+            <p>Benjamin Franklin said, "An investment in knowledge pays the best interest."</p>
+            <p>Robert Greene noted, "The future belongs to those who learn more skills and combine them in creative ways."</p>
+          </div>
+        </section>
+
+        <footer class="app-footer fade-in">
+          <div class="card">
+            <div class="card-title">
+              <h3>Footer Quote</h3>
+            </div>
+            <p id="footerQuote"></p>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Daily Speech</h3>
+            </div>
+            <div class="speech-text" id="footerSpeech"></div>
+          </div>
+          <div class="card">
+            <div class="card-title">
+              <h3>Verse for Today (NIV)</h3>
+            </div>
+            <p id="footerVerse"></p>
+          </div>
+        </footer>
+      </main>
+      
+      <div class="site-credit">
+        Made with <i class="fa-solid fa-heart"></i> by kevin for ambitious learners
+      </div>
+
+    <!-- AI Assistant Scripts -->
+    <script src="config.js"></script>
+    <script src="knowledge-base.js"></script>
+    <script src="ai-manager.js"></script>
+    <script src="ai-chat-ui.js"></script>
+    
+    <!-- Core Scripts -->
+    <script src="resources-manager.js?v=20260219"></script>
+    <script src="script.js?v=20260219" defer></script>
+  </body>
+</html>

@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Viewer | KELYLO</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="images/logo-best.svg" type="image/svg+xml" />
+  
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .viewer-header {
+      background: linear-gradient(135deg, var(--brand-navy) 0%, var(--brand-orange) 100%);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .viewer-header h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .viewer-header h1 i {
+      font-size: 1.3rem;
+    }
+
+    .viewer-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .viewer-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .viewer-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .viewer-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: auto;
+      background: var(--bg-hover);
+    }
+
+    .viewer-content img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .viewer-content video {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .viewer-content iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .file-info {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .file-info-icon {
+      font-size: 4rem;
+      color: var(--brand-orange);
+      margin-bottom: 16px;
+    }
+
+    .file-info h2 {
+      margin: 0 0 16px 0;
+      font-size: 1.3rem;
+      color: var(--brand-navy);
+      word-break: break-word;
+    }
+
+    .file-info-details {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      text-align: left;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid #E5E7EB;
+    }
+
+    .file-info-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+
+    .file-info-label {
+      color: var(--text-dim);
+    }
+
+    .file-info-value {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .error-message {
+      color: #EF4444;
+      text-align: center;
+      padding: 24px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 48px;
+      color: var(--text-dim);
+    }
+
+    .loading i {
+      font-size: 3rem;
+      color: var(--brand-orange);
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="viewer-header">
+    <h1>
+      <i class="fa-solid fa-file"></i>
+      <span id="fileName">Loading...</span>
+    </h1>
+    <div class="viewer-actions">
+      <button class="viewer-btn" id="downloadBtn" style="display: none;">
+        <i class="fa-solid fa-download"></i>
+        Download
+      </button>
+      <button class="viewer-btn" onclick="window.close()">
+        <i class="fa-solid fa-times"></i>
+        Close
+      </button>
+    </div>
+  </div>
+
+  <div class="viewer-content" id="viewerContent">
+    <div class="loading">
+      <i class="fa-solid fa-spinner"></i>
+      <p>Loading file...</p>
+    </div>
+  </div>
+
+  <script src="resources-manager.js"></script>
+  <script>
+    // Get file ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const fileId = urlParams.get('id');
+    const fileName = urlParams.get('name');
+
+    // Update title
+    document.getElementById('fileName').textContent = decodeURIComponent(fileName || 'File Viewer');
+    document.title = `${decodeURIComponent(fileName || 'File')} | KELYLO`;
+
+    // Load file data
+    async function loadFile() {
+      try {
+        // Get file data from sessionStorage (passed from parent window)
+        const fileDataString = sessionStorage.getItem(`file_${fileId}`);
+        
+        if (!fileDataString) {
+          // If not in session, try to load from IndexedDB
+          await ResourcesManager.initDB();
+          const allFiles = await ResourcesManager.getFiles('*'); // Get all files
+          const fileData = allFiles.find(f => f.id == fileId);
+          
+          if (!fileData) {
+            throw new Error('File not found');
+          }
+          
+          displayFile(fileData);
+        } else {
+          const fileData = JSON.parse(fileDataString);
+          displayFile(fileData);
+        }
+      } catch (error) {
+        console.error('Error loading file:', error);
+        document.getElementById('viewerContent').innerHTML = `
+          <div class="error-message">
+            <i class="fa-solid fa-exclamation-triangle"></i>
+            <p>Error loading file: ${error.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    function displayFile(fileData) {
+      const content = document.getElementById('viewerContent');
+      const downloadBtn = document.getElementById('downloadBtn');
+      
+      // Show download button
+      downloadBtn.style.display = 'flex';
+      downloadBtn.onclick = () => {
+        const a = document.createElement('a');
+        a.href = fileData.data;
+        a.download = fileData.name;
+        a.click();
+      };
+
+      // Update header icon
+      const headerIcon = document.querySelector('.viewer-header h1 i');
+      headerIcon.className = `fa-solid ${ResourcesManager.getFileIcon(fileData.type)}`;
+
+      // Display based on file type
+      if (fileData.type.startsWith('image/')) {
+        // Image viewer with proper scaling - maintains aspect ratio
+        const img = new Image();
+        img.onload = function() {
+          const aspectRatio = this.width / this.height;
+          const displayStyle = aspectRatio > 1 
+            ? `max-width: 100%; width: auto; height: auto; max-height: 90vh;` 
+            : `max-height: 90vh; height: auto; width: auto; max-width: 100%;`;
+          
+          content.innerHTML = `
+            <img 
+              src="${fileData.data}" 
+              alt="${fileData.name}" 
+              style="${displayStyle} object-fit: contain; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);" />
+          `;
+        };
+        img.src = fileData.data;
+      } 
+      else if (fileData.type.startsWith('video/')) {
+        // Video player with full controls, fullscreen, and proper 16:9 aspect ratio (default for most videos)
+        content.innerHTML = `
+          <div style="position: relative; width: 100%; max-width: 1920px; aspect-ratio: 16/9; margin: auto;">
+            <video 
+              controls 
+              controlsList="nodownload" 
+              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #000; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);"
+              onloadedmetadata="this.style.aspectRatio = this.videoWidth + '/' + this.videoHeight">
+              <source src="${fileData.data}" type="${fileData.type}" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        `;
+      }
+      else if (fileData.type === 'application/pdf') {
+        // PDF viewer
+        content.innerHTML = `<iframe src="${fileData.data}" title="${fileData.name}"></iframe>`;
+      }
+      else if (fileData.type.startsWith('text/')) {
+        // Text viewer
+        fetch(fileData.data)
+          .then(res => res.text())
+          .then(text => {
+            content.innerHTML = `
+              <div class="file-info" style="max-width: 800px; text-align: left;">
+                <div class="file-info-icon">
+                  <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <h2>${fileData.name}</h2>
+                <pre style="text-align: left; white-space: pre-wrap; word-break: break-word; background: #F3F4F6; padding: 16px; border-radius: 8px; overflow: auto; max-height: 500px;">${text}</pre>
+              </div>
+            `;
+          });
+      }
+      else {
+        // Generic file info
+        content.innerHTML = `
+          <div class="file-info">
+            <div class="file-info-icon">
+              <i class="fa-solid ${ResourcesManager.getFileIcon(fileData.type)}"></i>
+            </div>
+            <h2>${fileData.name}</h2>
+            <p>This file type cannot be previewed in the browser.</p>
+            <div class="file-info-details">
+              <div class="file-info-row">
+                <span class="file-info-label">Type:</span>
+                <span class="file-info-value">${fileData.type || 'Unknown'}</span>
+              </div>
+              <div class="file-info-row">
+                <span class="file-info-label">Size:</span>
+                <span class="file-info-value">${ResourcesManager.formatFileSize(fileData.size)}</span>
+              </div>
+              <div class="file-info-row">
+                <span class="file-info-label">Uploaded:</span>
+                <span class="file-info-value">${new Date(fileData.uploadDate).toLocaleDateString()}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    // Load file on page load
+    loadFile();
+  </script>
+</body>
+</html>
