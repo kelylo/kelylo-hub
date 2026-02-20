@@ -30,6 +30,7 @@ class AIChatUI {
     const chatHTML = `
       <!-- AI Chat Floating Button -->
       <button class="ai-chat-button" id="aiChatButton" title="KELYLO AI">
+        <span class="ai-chat-tooltip">Ask Me Anything</span>
         ${SPARKLE_SVG.large}
       </button>
 
