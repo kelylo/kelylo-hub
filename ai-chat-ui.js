@@ -31,7 +31,7 @@ class AIChatUI {
       <!-- AI Chat Floating Button -->
       <button class="ai-chat-button" id="aiChatButton" title="KELYLO AI">
         <span class="ai-chat-tooltip">Ask Me Anything</span>
-        ${SPARKLE_SVG.large}
+        <img src="images/chatgpt-icon.png" alt="KELYLO AI" />
       </button>
 
       <!-- AI Chat Modal -->
