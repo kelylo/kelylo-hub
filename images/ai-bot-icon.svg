@@ -1,9 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 80">
   <defs>
     <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f68712;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#03466e;stop-opacity:1" />
+      <stop offset="0%" stop-color="#f68712" />
+      <stop offset="100%" stop-color="#03466e" />
     </linearGradient>
   </defs>
-  <path fill="url(#aiGradient)" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200zm105.8-230.7c-3.3-24.5-15.8-46.4-34.5-62.1l-50.5 50.5c5.9 6.2 10.2 14 12.2 22.7 2.6 11.4.9 23.3-4.8 33.3l76.6 17.6c4.2-19.8 3.6-40.7-.9-61.9zm-211.6 0c-4.6 21.2-5.1 42.1-.9 61.9l76.6-17.6c-5.7-10-7.4-21.9-4.8-33.3 2-8.7 6.3-16.5 12.2-22.7l-50.5-50.5c-18.8 15.7-31.2 37.6-34.5 62.1zM348.7 378c18.9-14.4 33.8-33 43-54.8l-76.6-17.6c-5.7 9.9-14.6 17.7-25.3 22-14.1 5.7-29.8 5.7-43.9 0-10.7-4.3-19.6-12.1-25.3-22l-76.6 17.6c9.2 21.8 24.1 40.4 43 54.8 37.8 28.8 91.2 28.8 129 0zm-92.5-221.9l50.5 50.5c6.2-5.9 14-10.2 22.7-12.2 11.4-2.6 23.3-.9 33.3 4.8l17.6-76.6c-21.2-4.6-42.1-5.1-61.9-.9-24.5 3.3-46.4 15.8-62.1 34.5zm-43 200.8l76.6-17.6c-5.7-9.9-7.4-21.9-4.8-33.3 2-8.7 6.3-16.5 12.2-22.7l-50.5-50.5c-18.8 15.7-31.2 37.6-34.5 62.1-4.6 21.2-5.1 42.1-.9 61.9zm230.6-61.9c-3.3 24.5-15.8 46.4-34.5 62.1l-50.5-50.5c5.9-6.2 10.2-14 12.2-22.7 2.6-11.4.9-23.3-4.8-33.3l76.6-17.6c4.2 19.8 3.6 40.7-.9 61.9z"/>
+  <!-- Ask Me Anything message -->
+  <text x="32" y="16" text-anchor="middle" font-size="10" fill="#03466e" font-family="Poppins,Arial,sans-serif">Ask Me Anything</text>
+  <!-- ChatGPT-style hexagon flower -->
+  <g transform="translate(32,40)">
+    <g>
+      <path d="M0-18 L15-9 L15 9 L0 18 L-15 9 L-15-9 Z" fill="url(#aiGradient)" stroke="#03466e" stroke-width="2"/>
+      <path d="M0-18 L7.5-27 L22.5-18 L15-9" fill="none" stroke="#03466e" stroke-width="2"/>
+      <path d="M15-9 L22.5 0 L15 9" fill="none" stroke="#03466e" stroke-width="2"/>
+      <path d="M15 9 L7.5 18 L0 18" fill="none" stroke="#03466e" stroke-width="2"/>
+      <path d="M0 18 L-7.5 27 L-15 9" fill="none" stroke="#03466e" stroke-width="2"/>
+      <path d="M-15 9 L-22.5 0 L-15-9" fill="none" stroke="#03466e" stroke-width="2"/>
+      <path d="M-15-9 L-7.5-18 L0-18" fill="none" stroke="#03466e" stroke-width="2"/>
+    </g>
+    <!-- Inner hexagon -->
+    <polygon points="0,-10 8.66,-5 8.66,5 0,10 -8.66,5 -8.66,-5" fill="#fff" stroke="#03466e" stroke-width="1.5"/>
+  </g>
+  <!-- Green live dot -->
+  <circle cx="56" cy="72" r="4" fill="#2ecc40" stroke="#fff" stroke-width="1.5"/>
 </svg>
