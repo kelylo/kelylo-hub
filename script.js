@@ -1537,7 +1537,13 @@ const initCustomSkillPage = () => {
 // ── RESOURCES MANAGER (FILES & VIDEOS) ───────────────────────────────────
 const initResourcesManager = async (skillId) => {
   try {
-    await ResourcesManager.initDB();
+    // Initialize DB first
+    if (typeof ResourcesManager !== 'undefined' && ResourcesManager.initDB) {
+      await ResourcesManager.initDB();
+    } else {
+      console.error('ResourcesManager not found');
+      return;
+    }
     
     // File upload handling
     const uploadFileBtn = byId('uploadFileBtn');
@@ -1545,11 +1551,22 @@ const initResourcesManager = async (skillId) => {
     const filesList = byId('filesList');
     
     if (uploadFileBtn && fileInput) {
-      uploadFileBtn.addEventListener('click', () => fileInput.click());
+      // Remove any existing listeners to avoid duplicates
+      const newFileInput = fileInput.cloneNode(true);
+      fileInput.parentNode.replaceChild(newFileInput, fileInput);
       
-      fileInput.addEventListener('change', async (e) => {
+      // Re-get reference after clone
+      const freshFileInput = byId('fileInput');
+      
+      uploadFileBtn.addEventListener('click', () => freshFileInput.click());
+      
+      freshFileInput.addEventListener('change', async (e) => {
         const files = Array.from(e.target.files);
         if (files.length === 0) return;
+        
+        // Show uploading state
+        uploadFileBtn.disabled = true;
+        uploadFileBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Uploading...';
         
         for (const file of files) {
           if (file.size > 50 * 1024 * 1024) { // 50MB limit
@@ -1565,9 +1582,15 @@ const initResourcesManager = async (skillId) => {
           }
         }
         
-        fileInput.value = ''; // Reset input
+        freshFileInput.value = ''; // Reset input
         await renderFiles(skillId);
+        
+        // Reset button
+        uploadFileBtn.disabled = false;
+        uploadFileBtn.innerHTML = '<i class="fa-solid fa-upload"></i> Upload';
       });
+    } else {
+      console.warn('File upload elements not found');
     }
     
     // Video adding handling
@@ -1592,14 +1615,18 @@ const initResourcesManager = async (skillId) => {
         addVideoBtn.disabled = true;
         addVideoBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding...';
         
-        // No try-catch - always succeed (like opening a file)
-        await ResourcesManager.saveVideo(skillId, url, title);
-        await renderVideos(skillId);
-        
-        // Clear inputs
-        videoUrlInput.value = '';
-        videoTitleInput.value = '';
-        videoUrlInput.focus();
+        try {
+          await ResourcesManager.saveVideo(skillId, url, title);
+          await renderVideos(skillId);
+          
+          // Clear inputs
+          videoUrlInput.value = '';
+          videoTitleInput.value = '';
+          videoUrlInput.focus();
+        } catch (error) {
+          console.error('Error saving video:', error);
+          alert('Failed to add video. Please try again.');
+        }
         
         // Reset button
         addVideoBtn.disabled = false;
@@ -1614,6 +1641,8 @@ const initResourcesManager = async (skillId) => {
       };
       videoUrlInput.addEventListener('keypress', handleEnter);
       videoTitleInput.addEventListener('keypress', handleEnter);
+    } else {
+      console.warn('Video upload elements not found');
     }
     
     // Video player modal

@@ -57,6 +57,18 @@ html[data-theme="dark"] {
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
+/* Prevent zoom on PWA */
+html {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+}
+
+/* Prevent pinch zoom */
+body {
+  touch-action: pan-x pan-y;
+  overscroll-behavior: none;
+}
+
 body {
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg);
@@ -2370,18 +2382,18 @@ body[data-skill] .app-footer .card {
    AI CHAT ASSISTANT
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Floating AI Chat Button - ChatGPT Style with Custom Icon */
+/* Floating AI Chat Button - KELYLO Style with Conversation Icon */
 .ai-chat-button {
   position: fixed;
   bottom: 24px;
   right: 24px;
   width: 60px;
   height: 60px;
-  background: #10a37f;
+  background: linear-gradient(135deg, #f68712 0%, #e07810 100%);
   color: white;
   border: none;
-  border-radius: 14px;
-  box-shadow: 0 4px 24px rgba(16, 163, 127, 0.4);
+  border-radius: 50%;
+  box-shadow: 0 4px 24px rgba(246, 135, 18, 0.4);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -2389,27 +2401,23 @@ body[data-skill] .app-footer .card {
   font-size: 1.8rem;
   z-index: 999;
   transition: all 0.3s ease;
-  padding: 10px;
   box-sizing: border-box;
 }
 
-.ai-chat-button img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 8px;
+.ai-chat-button i {
+  font-size: 26px;
 }
 
 .ai-chat-button:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 28px rgba(16, 163, 127, 0.5);
+  box-shadow: 0 6px 28px rgba(246, 135, 18, 0.5);
 }
 
 .ai-chat-button:active {
   transform: scale(0.95);
 }
 
-/* Green Live Indicator */
+/* Orange Live Indicator */
 .ai-chat-button::before {
   content: '';
   position: absolute;
@@ -2821,6 +2829,13 @@ body[data-skill] .app-footer .card {
   align-items: center;
 }
 
+.ai-welcome-icon i {
+  font-size: 48px;
+  color: var(--brand-orange);
+  filter: drop-shadow(0 4px 12px rgba(246, 135, 18, 0.3));
+  animation: aiPulse 2s ease-in-out infinite;
+}
+
 .ai-welcome-icon img {
   width: 64px;
   height: 64px;
@@ -2993,4 +3008,115 @@ body[data-skill] .app-footer .card {
   20% { transform: scale(1); }
   30% { transform: scale(1.1); }
   40% { transform: scale(1); }
+}
+
+/* ── PWA OFFLINE & SLOW CONNECTION STYLES ───────────────────────────────── */
+
+/* Offline indicator */
+body.offline::before {
+  content: '📴 You are offline - Using cached content';
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #f68712, #e07810);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+body.offline .main {
+  padding-top: calc(var(--nav-h) + 36px);
+}
+
+/* Slow connection indicator */
+body.slow-connection::before {
+  content: '🐢 Slow connection detected - Loading cached content';
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  background: linear-gradient(90deg, #06B6D4, #0891B2);
+  color: white;
+  text-align: center;
+  padding: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  z-index: 1000;
+  animation: slideDown 0.3s ease;
+}
+
+body.slow-connection .main {
+  padding-top: calc(var(--nav-h) + 36px);
+}
+
+/* Online status indicator */
+body:not(.offline)::after {
+  content: '🟢 Online';
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: rgba(16, 185, 129, 0.9);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* Show online indicator briefly on load */
+body:not(.offline):not(.slow-connection):not(.page-loading)::after {
+  animation: fadeInOut 3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* PWA Install prompt styling */
+@media (display-mode: standalone) {
+  body {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+/* Reduce animations for slow devices */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles - hide interactive elements */
+@media print {
+  .ai-chat-button,
+  .nav-hamburger,
+  .theme-toggle,
+  .language-switcher {
+    display: none !important;
+  }
 }

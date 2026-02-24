@@ -2,18 +2,39 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    
+    <!-- PWA & Performance Optimization -->
     <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
-    <title>The Ambition Hub | KELYLO</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    
+    <!-- Connection Hints for Slow Data -->
+    <meta http-equiv="X-DNS-Prefetch-Control" content="on" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Preconnect to critical origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-    <link rel="preload" href="styles.css?v=20260219" as="style" />
-    <link rel="preload" href="script.js?v=20260219" as="script" />
-    <!-- Removed image preload for faster initial load -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    
+    <!-- Critical CSS preload - force load even on slow data -->
+    <link rel="preload" href="styles.css?v=20260220" as="style" />
+    <link rel="preload" href="script.js?v=20260220" as="script" />
+    
+    <!-- Preload critical images -->
+    <link rel="preload" href="images/logo-best.svg" as="image" type="image/svg+xml" />
+    
+    <!-- Fonts - async loading for speed -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="styles.css?v=20260219" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
+    
+    <link rel="stylesheet" href="styles.css?v=20260220" />
     <link rel="icon" href="images/logo-best.svg" type="image/svg+xml" />
     
     <!-- PWA Configuration -->
@@ -22,7 +43,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="KELYLO" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="format-detection" content="telephone=no" />
+    
+    <!-- Offline/Online Status -->
+    <meta name="offline" content="online-only" />
+    <meta name="go offline" content="available" />
+    
+    <!-- Touch icons -->
     <link rel="apple-touch-icon" href="images/logo-best.svg" />
+    <link rel="apple-touch-icon-precomposed" href="images/logo-best.svg" />
   </head>
   <body data-page="landing">
 
@@ -62,7 +92,7 @@
           <span class="hero-tagline"><span id="heroTaglineQuote">Master Your Craft</span></span>
           <h1 data-i18n="hero.title">
             TODAY IS THE BEST TIME <br>
-            TO MAKE IMPACT </h1>
+            TO CHANGE YOUR LIFE</h1>
           <p data-i18n="hero.subtitle">7 months &bull; 20 hours/week &bull; Master the 20% that delivers 80%</p>
           <div class="hero-actions">
             <a href="#skills" class="btn-hero">
@@ -202,7 +232,116 @@
     <script src="ai-manager.js"></script>
     <script src="ai-chat-ui.js"></script>
     
+    <!-- PWA & Network Status Handler -->
+    <script>
+    (function() {
+      'use strict';
+      
+      // Network status detection for slow data handling
+      function updateOnlineStatus() {
+        const isOnline = navigator.onLine;
+        document.body.classList.toggle('offline', !isOnline);
+        
+        if (isOnline) {
+          console.log('[PWA] Back online - content synced');
+        } else {
+          console.log('[PWA] Offline mode - serving cached content');
+        }
+      }
+      
+      // Detect slow connections (Save-Data header or effectiveType)
+      function isSlowConnection() {
+        const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+        if (conn) {
+          // Check for save-data mode or slow effective connection
+          if (conn.saveData) return true;
+          if (conn.effectiveType === 'slow-2g' || conn.effectiveType === '2g') return true;
+        }
+        return false;
+      }
+      
+      // Register Service Worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./service-worker.js?v=20260220')
+            .then(function(registration) {
+              console.log('[PWA] Service Worker registered:', registration.scope);
+              
+              // Handle updates
+              registration.addEventListener('updatefound', function() {
+                const newWorker = registration.installing;
+                newWorker.addEventListener('statechange', function() {
+                  if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                    // New version available
+                    console.log('[PWA] New version available');
+                    if (confirm('New version available! Refresh to update?')) {
+                      window.location.reload();
+                    }
+                  }
+                });
+              });
+              
+              // Handle slow connection - show loading indicator
+              if (isSlowConnection()) {
+                document.body.classList.add('slow-connection');
+                console.log('[PWA] Slow connection detected - using cached content');
+              }
+            })
+            .catch(function(error) {
+              console.log('[PWA] Service Worker registration failed:', error);
+            });
+        });
+      }
+      
+      // Listen for online/offline events
+      window.addEventListener('online', updateOnlineStatus);
+      window.addEventListener('offline', updateOnlineStatus);
+      
+      // Initial status
+      updateOnlineStatus();
+      
+      // Listen for connection changes
+      if (navigator.connection) {
+        navigator.connection.addEventListener('change', function() {
+          if (isSlowConnection()) {
+            document.body.classList.add('slow-connection');
+          } else {
+            document.body.classList.remove('slow-connection');
+          }
+        });
+      }
+      
+      // Handle beforeinstallprompt for PWA install
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+        
+        // Show install banner after delay
+        setTimeout(function() {
+          if (deferredPrompt && !localStorage.getItem('pwa-installed')) {
+            if (confirm('Install KELYLO for offline access and faster loading?')) {
+               deferredPrompt.prompt();
+               deferredPrompt.userChoice.then(function(result) {
+                 if (result.outcome === 'accepted') {
+                   localStorage.setItem('pwa-installed', 'true');
+                 }
+                 deferredPrompt = null;
+               });
+            }
+          }
+        }, 5000);
+      });
+      
+      // Handle app installed
+      window.addEventListener('appinstalled', function(e) {
+        console.log('[PWA] App installed successfully');
+        localStorage.setItem('pwa-installed', 'true');
+      });
+    })();
+    </script>
+    
     <!-- Core Scripts -->
-    <script src="script.js?v=20260219" defer></script>
+    <script src="script.js?v=20260220" defer></script>
   </body>
 </html>
