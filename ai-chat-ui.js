@@ -31,7 +31,7 @@ class AIChatUI {
       <!-- AI Chat Floating Button -->
       <button class="ai-chat-button" id="aiChatButton" title="KELYLO AI">
         <span class="ai-chat-tooltip">Ask Me Anything</span>
-        <i class="fa-solid fa-comment-dots"></i>
+        <img src="images/conversation-icon.svg" alt="Chat" class="ai-chat-icon-svg" style="width: 24px; height: 24px; vertical-align: middle;" />
       </button>
 
       <!-- AI Chat Modal -->
@@ -64,7 +64,7 @@ class AIChatUI {
           <!-- Messages -->
           <div class="ai-chat-messages" id="aiChatMessages">
             <div class="ai-welcome">
-              <div class="ai-welcome-icon"><i class="fa-solid fa-comments"></i></div>
+              <div class="ai-welcome-icon"><img src="images/conversation-icon.svg" alt="Conversation" style="width: 32px; height: 32px;" /></div>
               <h4>Hey! I'm KELYLO AI</h4>
               <p>Your learning companion for ${this.currentSkill?.name || 'all 8 skills'}. Ask me anything — study plans, tips, motivation, or just a chat!</p>
 
